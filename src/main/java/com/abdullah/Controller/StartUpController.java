@@ -49,4 +49,21 @@ public class StartUpController
         }
         return model;
     }
+    @RequestMapping(value="/login-register")
+    public ModelAndView processPersonRegister(@ModelAttribute LoginBean loginBean)
+    {
+        ModelAndView model= null;
+        try
+        {
+            loginvarify.register(loginBean.getFullname(),loginBean.getUsername(), loginBean.getPassword());
+
+            model = new ModelAndView("Login-Page", "login-entity", new LoginBean());
+
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return model;
+    }
 }

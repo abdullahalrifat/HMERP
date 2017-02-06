@@ -21,10 +21,10 @@
 <body>
 <div class="login-page">
     <div class="form">
-        <form class="register-form">
-            <input type="text" placeholder="name"/>
-            <input type="password" placeholder="password"/>
-            <input type="text" placeholder="email address"/>
+        <form class="register-form" method="POST" commandName="register-entity" action="/login-register.html">
+            <input name="fullname" type="text" placeholder="Full Name"/>
+            <input name="username" type="text" placeholder="Username"/>
+            <input name="password" type="password" placeholder="Password"/>
             <button>create</button>
             <p class="message">Already registered? <a href="#">Sign In</a></p>
         </form>
