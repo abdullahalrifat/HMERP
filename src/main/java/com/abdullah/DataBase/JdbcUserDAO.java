@@ -1,84 +1,64 @@
 package com.abdullah.DataBase;
 
 import com.abdullah.Login.LoginBean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * Created by abdullah on 2/6/17.
  */
-public class JdbcUserDAO implements UserDAO
+
+public class JdbcUserDAO extends JdbcDaoSupport implements UserDAO
 {
-    private DataSource dataSource;
-    public void setDataSource(DataSource dataSource)
+
+    private JdbcTemplate jdbcTemplate;
+    @Autowired
+    public JdbcUserDAO(DataSource dataSource)
     {
-        this.dataSource=dataSource;
+        super();
+        setDataSource(dataSource);
+        jdbcTemplate = new JdbcTemplate(dataSource);
     }
+
     @Override
     public void insert(LoginBean loginBean) {
         String sql="INSERT INTO Login "+"(Id,FullName,UserName,PassWord) VALUES (?, ?, ?, ?)";
-        Connection conn=null;
+
         try
         {
-            conn=dataSource.getConnection();
-            PreparedStatement ps=conn.prepareStatement(sql);
-            ps.setInt(1,loginBean.getId());
-            ps.setString(2,loginBean.getFullname());
-            ps.setString(3,loginBean.getUsername());
-            ps.setString(4,loginBean.getPassword());
-        }catch (SQLException e) {
+            jdbcTemplate.update(sql,loginBean.getId(),loginBean.getFullname(),loginBean.getUsername(),loginBean.getPassword());
+
+        }catch (Exception e) {
             e.printStackTrace();
         }
-        finally {
-            if(conn!=null)
-            {
-                try
-                {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
+
     }
 
     @Override
-    public Boolean UserVarifier(String username, String password)
+    public List<LoginBean> UserVarifier()
     {
 
-        String sql="SELECT * FROM Login WHERE (Id,FullName,UserName,PassWord) = VALUES (?, ?, ?, ?)";
-                Connection conn=null;
-        try {
-            conn = dataSource.getConnection();
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(3,username);
-            ps.setString(4,password);
-            ResultSet rs = ps.executeQuery();
-            if(rs.next())
+        String sql="SELECT * FROM Login ";
+        List<LoginBean>listUser=jdbcTemplate.query(sql, new RowMapper<LoginBean>() {
+            @Override
+            public LoginBean mapRow(ResultSet resultSet, int i) throws SQLException
             {
-                String user=rs.getString("UserName");
-                String pass=rs.getString("PassWord");
-                if(user.equals(username)&&pass.equals(password))
-                {
-                    conn.close();
-                    return true;
-                }
+                LoginBean loginBean=new LoginBean();
+                loginBean.setId(resultSet.getInt("Id"));
+                loginBean.setFullname(resultSet.getString("FullName"));
+                loginBean.setUsername(resultSet.getString("UserName"));
+                loginBean.setPassword(resultSet.getString("PassWord"));
+                return loginBean;
             }
-            rs.close();
-            ps.close();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } finally {
-            if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {}
-            }
-        }
-        return false;
+        });
+        return listUser;
+
     }
 }

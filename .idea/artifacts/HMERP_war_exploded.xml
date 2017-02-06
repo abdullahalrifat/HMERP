@@ -10,6 +10,7 @@
         <element id="directory" name="lib">
           <element id="library" level="project" name="Spring-4.3.6.RELEASE" />
           <element id="library" level="project" name="Spring MVC-4.3.6.RELEASE" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.15" />
         </element>
       </element>
     </root>

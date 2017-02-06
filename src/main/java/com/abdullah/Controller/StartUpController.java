@@ -18,6 +18,7 @@ public class StartUpController
 {
     @Autowired
     LoginVarifier loginvarify;
+
     @RequestMapping(value="/login-form")
     @ResponseBody
     public ModelAndView personPage()
@@ -32,7 +33,7 @@ public class StartUpController
         ModelAndView model= null;
         try
         {
-            boolean isValidUser = loginvarify.isValidUser(loginBean.getUsername(), loginBean.getPassword());
+            boolean isValidUser =loginvarify.isValidUser(loginBean.getUsername(), loginBean.getPassword());
             if(isValidUser)
             {
                 model = new ModelAndView("Home");

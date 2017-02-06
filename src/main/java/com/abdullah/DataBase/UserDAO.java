@@ -3,6 +3,8 @@ package com.abdullah.DataBase;
 import com.abdullah.Login.LoginBean;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 /**
  * Created by abdullah on 2/6/17.
  */
@@ -10,5 +12,5 @@ import org.springframework.stereotype.Component;
 public interface UserDAO
 {
     public void insert(LoginBean loginBean);
-    public Boolean UserVarifier(String username, String password);
+    public List<LoginBean> UserVarifier();
 }
