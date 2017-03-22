@@ -1,8 +1,13 @@
 package com.abdullah.Controller;
 
+import com.abdullah.Employee.EmployeeBean;
+import com.abdullah.EmployeeDatabase.EmployeeDetails;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 /**
  * Created by abdullah on 1/31/17.
@@ -158,6 +163,33 @@ public class Home
         try
         {
             model = new ModelAndView("Icons");
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return model;
+    }
+
+    //own added
+    @Autowired
+    EmployeeDetails emp;
+    @RequestMapping(value="/employees")
+    public ModelAndView processEmployees()
+    {
+        ModelAndView model= null;
+        try
+        {
+            model = new ModelAndView("Employees");
+
+            List<EmployeeBean> employeeList = emp.getList();
+
+
+             //checking if reading the databse
+            System.out.println(employeeList.get(0).getName());
+
+            model.addObject("employeeList",employeeList);
+
         }
         catch(Exception e)
         {
