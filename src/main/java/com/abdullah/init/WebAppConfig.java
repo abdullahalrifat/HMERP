@@ -4,6 +4,8 @@ import com.abdullah.DataBase.JdbcUserDAO;
 import com.abdullah.DataBase.UserDAO;
 import com.abdullah.EmployeeDatabase.EmployeeDAO;
 import com.abdullah.EmployeeDatabase.JdbcEmployeeDAO;
+import com.abdullah.ProjectDatabase.ProjectsDAO;
+import com.abdullah.ProjectDatabase.jdbcProjectsDAO;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -58,6 +60,10 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 	@Bean
 	public EmployeeDAO getEmployeeDAO() {
 		return new JdbcEmployeeDAO(dataSource());
+	}
+	@Bean
+	public ProjectsDAO getProjectsDAO() {
+		return new jdbcProjectsDAO(dataSource());
 	}
 
 

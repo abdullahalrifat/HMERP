@@ -212,4 +212,18 @@ public class Home
         }
         return model;
     }
+    @RequestMapping(value="/projects")
+    public ModelAndView processProjects()
+    {
+        ModelAndView model= null;
+        try
+        {
+            model = new ModelAndView("Projects");
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return model;
+    }
 }

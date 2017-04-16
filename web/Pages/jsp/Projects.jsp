@@ -1,16 +1,18 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: abdullah
-  Date: 2/8/17
-  Time: 6:44 PM
+  Date: 3/21/17
+  Time: 12:49 PM
   To change this template use File | Settings | File Templates.
 --%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
 <html lang="en">
 
 <head>
-    <title>Charts | Klorofil - Free Bootstrap Dashboard Template</title>
+    <title>Projects | Klorofil - Free Bootstrap Dashboard Template</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -25,6 +27,15 @@
     <!-- ICONS -->
     <link rel="apple-touch-icon" sizes="76x76" href="/resources/AdminPanel/template/assets/img/apple-icon.png">
     <link rel="icon" type="image/png" sizes="96x96" href="/resources/AdminPanel/template/assets/img/favicon.png">
+
+    <!-- Style sheet for project add button -->
+    <link data-require="bootstrap-css@3.1.1" data-semver="3.1.1" rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+    <script data-require="jquery@*" data-semver="2.0.3" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script data-require="bootstrap@*" data-semver="3.1.1" src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/resources/OtherHardCodedDesigns/ProjectsAddStyle.css" />
+    <!-- for adding projects table -->
+    <link rel="stylesheet" href="/resources/Login/css/style.css">
+
 </head>
 
 <body>
@@ -40,9 +51,9 @@
                 <ul class="nav">
                     <li><a href="index.html" class=""><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
                     <li><a href="employees.html" class=""><i class="lnr lnr-employee"></i> <span>Employees</span></a></li>
-                    <li><a href="projects.html" class=""><i class="lnr lnr-projects"></i> <span>Projects</span></a></li>
+                    <li><a href="projects.html" class="active"><i class="lnr lnr-projects"></i> <span>Projects</span></a></li>
                     <li><a href="elements.html" class=""><i class="lnr lnr-code"></i> <span>Elements</span></a></li>
-                    <li><a href="charts.html" class="active"><i class="lnr lnr-chart-bars"></i> <span>Charts</span></a></li>
+                    <li><a href="charts.html" class=""><i class="lnr lnr-chart-bars"></i> <span>Charts</span></a></li>
                     <li><a href="panels.html" class=""><i class="lnr lnr-cog"></i> <span>Panels</span></a></li>
                     <li><a href="notifications.html" class=""><i class="lnr lnr-alarm"></i> <span>Notifications</span></a></li>
                     <li>
@@ -126,50 +137,30 @@
         <!-- MAIN CONTENT -->
         <div class="main-content">
             <div class="container-fluid">
-                <h3 class="page-title">Charts</h3>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="panel">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Line Chart</h3>
-                            </div>
-                            <div class="panel-body">
-                                <div id="demo-line-chart" class="ct-chart"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="panel">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Bar Chart</h3>
-                            </div>
-                            <div class="panel-body">
-                                <div id="demo-bar-chart" class="ct-chart"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="panel">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Area Chart</h3>
-                            </div>
-                            <div class="panel-body">
-                                <div id="demo-area-chart" class="ct-chart"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="panel">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Multiple Chart</h3>
-                            </div>
-                            <div class="panel-body">
-                                <div id="visits-trends-chart" class="ct-chart"></div>
-                            </div>
-                        </div>
-                    </div>
+                <h3 class="page-title">Projects</h3>
+                <!--
+                    demo for adding class as text clicked
+                <a href="#openModal">Open Modal</a>-->
+                <a class="btn" href="#openModal"><img src="/resources/AdminPanel/template/assets/img/projects.png" class="img-circle" alt="Avatar"></a>
+
+
+                <!-- Here goes the contents of this page-->
+
+            </div>
+        </div>
+        <!-- Projects Add Style -->
+        <div id="openModal" class="modalDialog">
+            <div>
+                <a href="#close" title="Close" class="close">X</a>
+                <div class="form">
+                    <form method="POST" commandName="register-Project-entity" action="/add-project.html">
+                        <input name="ProjectName" type="text" placeholder="Project Name"/>
+                        <input name="ProjectClient" type="text" placeholder="Project Client"/>
+                        <input name="ProjectManager" type="text" placeholder="Project Manager"/>
+                        <input name="ProjectDeadLine" type="text" placeholder="Project DeadLine"/>
+                        <button>Add</button>
+                    </form>
+
                 </div>
             </div>
         </div>
@@ -184,11 +175,14 @@
 </div>
 <!-- END WRAPPER -->
 <!-- Javascript -->
-<script src="/resources/AdminPanel/template//resources/AdminPanel/template/assets/js/jquery/jquery-2.1.0.min.js"></script>
+<script src="/resources/AdminPanel/template/assets/js/jquery/jquery-2.1.0.min.js"></script>
 <script src="/resources/AdminPanel/template/assets/js/bootstrap/bootstrap.min.js"></script>
 <script src="/resources/AdminPanel/template/assets/js/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-<script src="/resources/AdminPanel/template/assets/js/plugins/chartist/chartist.min.js"></script>
 <script src="/resources/AdminPanel/template/assets/js/klorofil.min.js"></script>
+
+<!-- for adding projects table -->
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src="/resources/Login/js/index.js"></script>
 </body>
 
 </html>
