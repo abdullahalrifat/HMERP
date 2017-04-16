@@ -23,7 +23,7 @@ public class StartUpController
     @ResponseBody
     public ModelAndView personPage()
     {
-        System.out.println("start");
+       // System.out.println("start");
         return new ModelAndView("Login-Page", "login-entity", new LoginBean());
     }
 

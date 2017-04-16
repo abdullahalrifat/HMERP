@@ -29,6 +29,12 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		dataSource.setUrl("jdbc:mysql://localhost:3306/HMERP");
 		dataSource.setUsername("root");
 		dataSource.setPassword("rifat20081995");
+		/*
+		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+		dataSource.setUrl("jdbc:mysql://185.116.214.8:2082/thehub_wp398");
+		dataSource.setUsername("thehub");
+		dataSource.setPassword("DQnR3!}Ehem6");
+		*/
 		return dataSource;
 	}
 

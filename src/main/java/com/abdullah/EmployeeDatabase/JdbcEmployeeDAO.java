@@ -26,7 +26,7 @@ public class JdbcEmployeeDAO extends JdbcDaoSupport implements EmployeeDAO
     }
     @Override
     public void insertEmployees(EmployeeBean employeeBeans) {
-        String sql="INSERT INTO Employees "+"(Id,Name,Phone,Address,Position) VALUES (?, ?, ?, ?,?)";
+        String sql="INSERT INTO Employees "+"(Id,Name,Phone,Address,Position) VALUES (?, ?, ?, ?, ?)";
 
         try
         {

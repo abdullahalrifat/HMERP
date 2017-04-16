@@ -15,6 +15,13 @@ public class EmployeeBean
     public EmployeeBean() {
 
     }
+    public EmployeeBean(String name, String phone, String address, String position) {
+        this.id = 0;
+        Name = name;
+        Phone = phone;
+        Address = address;
+        Position = position;
+    }
     public EmployeeBean(int id, String name, String phone, String address, String position) {
         this.id = id;
         Name = name;

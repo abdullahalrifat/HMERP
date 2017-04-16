@@ -12,7 +12,7 @@
 <html lang="en">
 
 <head>
-    <title>Tables | Klorofil - Free Bootstrap Dashboard Template</title>
+    <title>Employees | Klorofil - Free Bootstrap Dashboard Template</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -128,7 +128,7 @@
         <div class="main-content">
             <div class="container-fluid">
                 <h3 class="page-title">Tables</h3>
-                <a class="btn" href=""><img src="/resources/AdminPanel/template/assets/img/add.png" class="img-circle" alt="Avatar"></a>
+                <a class="btn" href="Addemployees.html"><img src="/resources/AdminPanel/template/assets/img/add.png" class="img-circle" alt="Avatar"></a>
                         <!-- TABLE HOVER -->
                         <div class="panel">
                             <div class="panel-heading">

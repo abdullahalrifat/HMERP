@@ -186,10 +186,25 @@ public class Home
 
 
              //checking if reading the databse
-            System.out.println(employeeList.get(0).getName());
+           // System.out.println(employeeList.get(0).getName());
 
             model.addObject("employeeList",employeeList);
 
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return model;
+    }
+
+    @RequestMapping(value="/Addemployees")
+    public ModelAndView processAddEmployees()
+    {
+        ModelAndView model= null;
+        try
+        {
+            model = new ModelAndView("AddEmployees","register-Employee-entity",new EmployeeBean());
         }
         catch(Exception e)
         {
