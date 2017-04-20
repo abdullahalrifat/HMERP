@@ -23,9 +23,9 @@ public class AddProjects
         ModelAndView model= null;
         try
         {
-            if(projectBean.getProjectName()!=""&&projectBean.getProjectClient()!=""&& projectBean.getProjectManager()!=""&&projectBean.getProjectDeadLine()!="")
+            if(projectBean.getProjectName()!=""&&projectBean.getProjectClient()!=""&& projectBean.getProjectManager()!=""&&projectBean.getProjectDeadLine()!=""&&projectBean.getProjectStatus()!="")
             {
-                emp.registerProjects(projectBean.getProjectName(),projectBean.getProjectClient(), projectBean.getProjectManager(),projectBean.getProjectDeadLine());
+                emp.registerProjects(projectBean.getProjectName(),projectBean.getProjectClient(), projectBean.getProjectManager(),projectBean.getProjectDeadLine(),projectBean.getProjectStatus());
                 model = new ModelAndView("Home");
             }
             else

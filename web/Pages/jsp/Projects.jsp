@@ -28,13 +28,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="/resources/AdminPanel/template/assets/img/apple-icon.png">
     <link rel="icon" type="image/png" sizes="96x96" href="/resources/AdminPanel/template/assets/img/favicon.png">
 
-    <!-- Style sheet for project add button -->
-    <link data-require="bootstrap-css@3.1.1" data-semver="3.1.1" rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
-    <script data-require="jquery@*" data-semver="2.0.3" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
-    <script data-require="bootstrap@*" data-semver="3.1.1" src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="/resources/OtherHardCodedDesigns/ProjectsAddStyle.css" />
-    <!-- for adding projects table -->
-    <link rel="stylesheet" href="/resources/Login/css/style.css">
+
 
 </head>
 
@@ -136,12 +130,87 @@
         <!-- END NAVBAR -->
         <!-- MAIN CONTENT -->
         <div class="main-content">
+
+
+            <!-- Style sheet for project add button -->
+            <link data-require="bootstrap-css@3.1.1" data-semver="3.1.1" rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+            <link rel="stylesheet" href="/resources/OtherHardCodedDesigns/ProjectsAddStyle.css" />
+            <!-- for adding projects table -->
+            <link rel="stylesheet" href="/resources/Login/css/style.css">
+
+            <!-- for adding project add button -->
+            <script data-require="jquery@*" data-semver="2.0.3" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+            <script data-require="bootstrap@*" data-semver="3.1.1" src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+            <!-- for adding projects table -->
+            <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+            <script src="/resources/Login/js/index.js"></script>
+
+
+
+
             <div class="container-fluid">
                 <h3 class="page-title">Projects</h3>
+
                 <!--
                     demo for adding class as text clicked
                 <a href="#openModal">Open Modal</a>-->
                 <a class="btn" href="#openModal"><img src="/resources/AdminPanel/template/assets/img/projects.png" class="img-circle" alt="Avatar"></a>
+                <!-- TABLE HOVER -->
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Projects</h3>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <!-- Adding menu for the employee table -->
+                                <th>#</th>
+                                <th>Project Name</th>
+                                <th>Project Client</th>
+                                <th>Project Manager</th>
+                                <th>Project DeadLine</th>
+                                <th>Project Status</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+
+                            <!-- adding all employees  -->
+                            <c:forEach var = "listValue" items = "${projectList}">
+
+                                <tr onclick="window.document.location='#UpdateModal';">
+
+                                    <td>
+                                        <c:out value="${listValue.getId()}"/>
+                                    </td>
+                                    <td>
+                                        <c:out value="${listValue.getProjectName()}"/>
+                                    </td>
+                                    <td>
+                                        <c:out value="${listValue.getProjectClient()}"/>
+                                    </td>
+                                    <td>
+                                        <c:out value="${listValue.getProjectManager()}"/>
+                                    </td>
+                                    <td>
+                                        <c:out value="${listValue.getProjectDeadLine()}"/>
+                                    </td>
+                                    <td>
+                                        <c:out value="${listValue.getProjectStatus()}"/>
+                                    </td>
+                                </tr>
+
+                            </c:forEach>
+
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- END TABLE HOVER -->
 
 
                 <!-- Here goes the contents of this page-->
@@ -164,6 +233,22 @@
                 </div>
             </div>
         </div>
+        <!-- Projects Update Style -->
+        <div id="UpdateModal" class="modalDialog">
+            <div>
+                <a href="#close" title="Close" class="close">X</a>
+                <div class="form">
+                    <form method="POST" commandName="register-Project-entity" action="/add-project.html">
+                        <input name="ProjectName" type="text" placeholder="Project Name"/>
+                        <input name="ProjectClient" type="text" placeholder="Project Client"/>
+                        <input name="ProjectManager" type="text" placeholder="Project Manager"/>
+                        <input name="ProjectDeadLine" type="text" placeholder="Project DeadLine"/>
+                        <button>Update</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
         <!-- END MAIN CONTENT -->
         <footer>
             <div class="container-fluid">
@@ -180,9 +265,7 @@
 <script src="/resources/AdminPanel/template/assets/js/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <script src="/resources/AdminPanel/template/assets/js/klorofil.min.js"></script>
 
-<!-- for adding projects table -->
-<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-<script src="/resources/Login/js/index.js"></script>
+
 </body>
 
 </html>

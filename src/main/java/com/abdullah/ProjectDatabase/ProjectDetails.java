@@ -20,11 +20,11 @@ public class ProjectDetails
         List<ProjectBean> listUser=projectsDAO.ListOfProjects();
         return listUser;
     }
-    public void registerProjects(String Name,String Phone,String Address,String Position)
+    public void registerProjects(String projectName,String projectClient,String projectManager,String projectDeadLine,String projectStatus)
     {
         List<ProjectBean> listUser=projectsDAO.ListOfProjects();
         int size=listUser.size();
-        ProjectBean projectBean=new ProjectBean(size+1,Name,Phone,Address,Position);
+        ProjectBean projectBean=new ProjectBean(size+1,projectName,projectClient,projectManager,projectDeadLine,projectStatus);
         projectsDAO.insertProjects(projectBean);
     }
 }

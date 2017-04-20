@@ -10,22 +10,28 @@ public class ProjectBean
     private String ProjectClient;
     private String ProjectManager;
     private String ProjectDeadLine;
+    private String ProjectStatus;
+
+
+
     public ProjectBean()
     {
 
     }
-    public ProjectBean(String projectName, String projectClient, String projectManager, String projectDeadLine) {
+    public ProjectBean(String projectName, String projectClient, String projectManager, String projectDeadLine,String projectStatus) {
         ProjectName = projectName;
         ProjectClient = projectClient;
         ProjectManager = projectManager;
         ProjectDeadLine = projectDeadLine;
+        ProjectStatus=projectStatus;
     }
-    public ProjectBean(int id, String projectName, String projectClient, String projectManager, String projectDeadLine) {
+    public ProjectBean(int id, String projectName, String projectClient, String projectManager, String projectDeadLine,String projectStatus) {
         this.id = id;
         ProjectName = projectName;
         ProjectClient = projectClient;
         ProjectManager = projectManager;
         ProjectDeadLine = projectDeadLine;
+        ProjectStatus=projectStatus;
     }
 
     public int getId() {
@@ -66,5 +72,12 @@ public class ProjectBean
 
     public void setProjectDeadLine(String projectDeadLine) {
         ProjectDeadLine = projectDeadLine;
+    }
+    public String getProjectStatus() {
+        return ProjectStatus;
+    }
+
+    public void setProjectStatus(String projectStatus) {
+        ProjectStatus = projectStatus;
     }
 }

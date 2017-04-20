@@ -1,6 +1,5 @@
 package com.abdullah.ProjectDatabase;
 
-import com.abdullah.Employee.EmployeeBean;
 import com.abdullah.Project.ProjectBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -28,11 +27,11 @@ public class jdbcProjectsDAO extends JdbcDaoSupport implements ProjectsDAO {
     @Override
     public void insertProjects(ProjectBean ProjectBeans)
     {
-        String sql="INSERT INTO Projects "+"(Id,ProjectName,ProjectClient,ProjectManager,ProjectDeadLine) VALUES (?, ?, ?, ?, ?)";
+        String sql="INSERT INTO Projects "+"(Id,ProjectName,ProjectClient,ProjectManager,ProjectDeadLine,ProjectStatus) VALUES (?, ?, ?, ?, ?,?)";
 
         try
         {
-            jdbcTemplate.update(sql,ProjectBeans.getId(),ProjectBeans.getProjectName(),ProjectBeans.getProjectClient(),ProjectBeans.getProjectManager(),ProjectBeans.getProjectDeadLine());
+            jdbcTemplate.update(sql,ProjectBeans.getId(),ProjectBeans.getProjectName(),ProjectBeans.getProjectClient(),ProjectBeans.getProjectManager(),ProjectBeans.getProjectDeadLine(),ProjectBeans.getProjectStatus());
 
         }catch (Exception e) {
             e.printStackTrace();
@@ -53,6 +52,7 @@ public class jdbcProjectsDAO extends JdbcDaoSupport implements ProjectsDAO {
                 projectBean.setProjectClient(resultSet.getString("ProjectClient"));
                 projectBean.setProjectManager(resultSet.getString("ProjectManager"));
                 projectBean.setProjectDeadLine(resultSet.getString("ProjectDeadLine"));
+                projectBean.setProjectStatus(resultSet.getString("ProjectStatus"));
                 return  projectBean;
             }
         });

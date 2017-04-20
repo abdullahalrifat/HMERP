@@ -2,6 +2,8 @@ package com.abdullah.Controller;
 
 import com.abdullah.Employee.EmployeeBean;
 import com.abdullah.EmployeeDatabase.EmployeeDetails;
+import com.abdullah.Project.ProjectBean;
+import com.abdullah.ProjectDatabase.ProjectDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -212,6 +214,33 @@ public class Home
         }
         return model;
     }
+    //own added
+    @Autowired
+    ProjectDetails pmps;
+    @RequestMapping(value="/projects")
+    public ModelAndView processProject()
+    {
+        ModelAndView model= null;
+        try
+        {
+            model = new ModelAndView("Projects");
+
+            List<ProjectBean> projectList = pmps.getList();
+
+
+            //checking if reading the databse
+             //System.out.println(projectList.get(0).getProjectName());
+
+            model.addObject("projectList",projectList);
+
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return model;
+    }
+/*
     @RequestMapping(value="/projects")
     public ModelAndView processProjects()
     {
@@ -225,5 +254,5 @@ public class Home
             e.printStackTrace();
         }
         return model;
-    }
+    }*/
 }
