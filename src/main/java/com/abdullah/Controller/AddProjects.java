@@ -32,9 +32,31 @@ public class AddProjects
             {
                 model = new ModelAndView("Projects");
             }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return model;
+    }
+    @Autowired
+    ProjectDetails empu;
+    @RequestMapping(value="/update-project")
+    public ModelAndView processUpdateProjects(@ModelAttribute ProjectBean projectBean)
+    {
 
-
-
+        ModelAndView model= null;
+        try
+        {
+            if(projectBean.getProjectName()!=""&&projectBean.getProjectClient()!=""&& projectBean.getProjectManager()!=""&&projectBean.getProjectDeadLine()!=""&&projectBean.getProjectStatus()!="")
+            {
+                empu.updateProjects(projectBean.getId(),projectBean.getProjectName(),projectBean.getProjectClient(), projectBean.getProjectManager(),projectBean.getProjectDeadLine(),projectBean.getProjectStatus());
+                model = new ModelAndView("Home");
+            }
+            else
+            {
+                model = new ModelAndView("Projects");
+            }
         }
         catch(Exception e)
         {

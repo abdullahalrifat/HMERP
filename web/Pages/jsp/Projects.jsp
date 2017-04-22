@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: abdullah
@@ -154,7 +155,7 @@
 
                 <!--
                     demo for adding class as text clicked
-                <a href="#openModal">Open Modal</a>-->
+                <a hrefas="#openModal">Open Modal</a>-->
                 <a class="btn" href="#openModal"><img src="/resources/AdminPanel/template/assets/img/projects.png" class="img-circle" alt="Avatar"></a>
                 <!-- TABLE HOVER -->
                 <div class="panel">
@@ -179,9 +180,10 @@
 
                             <!-- adding all employees  -->
                             <c:forEach var = "listValue" items = "${projectList}">
-
+                            <!--
                                 <tr onclick="window.document.location='#UpdateModal';">
-
+                                -->
+                                <tr onclick="setrow('${listValue.getId()}','${listValue.getProjectName()}','${listValue.getProjectClient()}','${listValue.getProjectManager()}','${listValue.getProjectDeadLine()}','${listValue.getProjectStatus()}')">
                                     <td>
                                         <c:out value="${listValue.getId()}"/>
                                     </td>
@@ -233,22 +235,45 @@
                 </div>
             </div>
         </div>
+        <script type="text/javascript">
+            var rownumber;
+
+            function getselectedrow() {
+                return rownumber;
+            }
+            function setrow() {
+                rownumber=arguments[0];
+
+               // alert("Row index is: " + arguments[0]);
+                document.getElementById("pid").value=parseInt(arguments[0]);
+                 document.getElementById("pname").value=arguments[1];
+                 document.getElementById("pclient").value=arguments[2];
+                 document.getElementById("pmanager").value=arguments[3] ;
+                 document.getElementById("pdeadline").value=arguments[4];
+                document.getElementById("pstatus").value=arguments[5];
+                window.document.location='#UpdateModal';
+            }
+
+        </script>
         <!-- Projects Update Style -->
         <div id="UpdateModal" class="modalDialog">
             <div>
                 <a href="#close" title="Close" class="close">X</a>
                 <div class="form">
-                    <form method="POST" commandName="register-Project-entity" action="/add-project.html">
-                        <input name="ProjectName" type="text" placeholder="Project Name"/>
-                        <input name="ProjectClient" type="text" placeholder="Project Client"/>
-                        <input name="ProjectManager" type="text" placeholder="Project Manager"/>
-                        <input name="ProjectDeadLine" type="text" placeholder="Project DeadLine"/>
-                        <button>Update</button>
+                        <form method="POST" commandName="register-Project-entity" action="/update-project.html">
+                            <input type="hidden" name="Id" id="pid" type="number" placeholder="ID">
+                            <input name="ProjectName" id="pname" type="text" placeholder="Project Name"/>
+                            <input name="ProjectClient" id="pclient" type="text" placeholder="Project Client"/>
+                            <input name="ProjectManager" id="pmanager" type="text" placeholder="Project Manager"/>
+                            <input name="ProjectDeadLine" id ="pdeadline" type="text" placeholder="Project DeadLine"/>
+                            <input name="ProjectStatus" id ="pstatus" type="text" placeholder="Project Status"/>
+                            <button>Update</button>
                     </form>
-
                 </div>
             </div>
         </div>
+
+
         <!-- END MAIN CONTENT -->
         <footer>
             <div class="container-fluid">

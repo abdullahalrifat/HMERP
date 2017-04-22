@@ -12,5 +12,6 @@ import java.util.List;
 public interface ProjectsDAO
 {
     public void insertProjects(ProjectBean ProjectBeans);
+    public void updateProjects(ProjectBean ProjectBeans);
     public List<ProjectBean> ListOfProjects();
 }

@@ -27,4 +27,9 @@ public class ProjectDetails
         ProjectBean projectBean=new ProjectBean(size+1,projectName,projectClient,projectManager,projectDeadLine,projectStatus);
         projectsDAO.insertProjects(projectBean);
     }
+    public void updateProjects(int id,String projectName,String projectClient,String projectManager,String projectDeadLine,String projectStatus)
+    {
+        ProjectBean projectBean=new ProjectBean(id,projectName,projectClient,projectManager,projectDeadLine,projectStatus);
+        projectsDAO.updateProjects(projectBean);
+    }
 }

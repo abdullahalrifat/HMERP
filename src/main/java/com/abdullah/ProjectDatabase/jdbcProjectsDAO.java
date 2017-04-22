@@ -59,4 +59,16 @@ public class jdbcProjectsDAO extends JdbcDaoSupport implements ProjectsDAO {
         return listProjects;
 
     }
+    public void updateProjects(ProjectBean ProjectBeans)
+    {
+        String sql="UPDATE Projects "+"SET ProjectName =? ,ProjectClient = ?,ProjectManager = ?,ProjectDeadLine = ?,ProjectStatus = ? WHERE id = "+ProjectBeans.getId();
+
+        try
+        {
+            jdbcTemplate.update(sql,ProjectBeans.getProjectName(),ProjectBeans.getProjectClient(),ProjectBeans.getProjectManager(),ProjectBeans.getProjectDeadLine(),ProjectBeans.getProjectStatus());
+
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
