@@ -229,6 +229,14 @@
                         <input name="ProjectClient" type="text" placeholder="Project Client"/>
                         <input name="ProjectManager" type="text" placeholder="Project Manager"/>
                         <input name="ProjectDeadLine" type="text" placeholder="Project DeadLine"/>
+                        <!--
+                        <select name="ProjectStatus">
+                            <option value="On-Going">On-Going</option>
+                            <option value="Done">Done</option>
+                            <option value="In-Queue">In-Queue</option>
+                        </select>
+                        -->
+                        <input name="ProjectStatus" type="text" placeholder="Project Status"/>
                         <button>Add</button>
                     </form>
 
