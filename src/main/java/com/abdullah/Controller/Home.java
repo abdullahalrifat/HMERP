@@ -1,5 +1,7 @@
 package com.abdullah.Controller;
 
+import com.abdullah.CustomerListDataBase.CustomerDetails;
+import com.abdullah.CustomersList.CustomersListBean;
 import com.abdullah.Employee.EmployeeBean;
 import com.abdullah.EmployeeDatabase.EmployeeDetails;
 import com.abdullah.Project.ProjectBean;
@@ -233,6 +235,45 @@ public class Home
 
             model.addObject("projectList",projectList);
 
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return model;
+    }
+    @Autowired
+    CustomerDetails cumdet;
+    @RequestMapping(value="/CustomersList")
+    public ModelAndView processCustomers()
+    {
+        ModelAndView model= null;
+        try
+        {
+            model = new ModelAndView("CustomersList");
+
+            List<CustomersListBean> customerList = cumdet.getList();
+
+
+            //checking if reading the databse
+            //System.out.println(projectList.get(0).getProjectName());
+
+            model.addObject("customerList",customerList);
+
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return model;
+    }
+    @RequestMapping(value="/AddCustomers")
+    public ModelAndView processAddCustomers()
+    {
+        ModelAndView model= null;
+        try
+        {
+            model = new ModelAndView("AddCustomers","register-Customers-entity",new CustomersListBean());
         }
         catch(Exception e)
         {

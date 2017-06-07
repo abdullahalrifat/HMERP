@@ -1,5 +1,7 @@
 package com.abdullah.init;
 
+import com.abdullah.CustomerListDataBase.CustomerDAO;
+import com.abdullah.CustomerListDataBase.jdbcCustomerDAO;
 import com.abdullah.DataBase.JdbcUserDAO;
 import com.abdullah.DataBase.UserDAO;
 import com.abdullah.EmployeeDatabase.EmployeeDAO;
@@ -64,6 +66,10 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 	@Bean
 	public ProjectsDAO getProjectsDAO() {
 		return new jdbcProjectsDAO(dataSource());
+	}
+	@Bean
+	public CustomerDAO getCustomerDAO() {
+		return new jdbcCustomerDAO(dataSource());
 	}
 
 
