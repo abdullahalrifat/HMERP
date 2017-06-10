@@ -1,6 +1,6 @@
 package com.abdullah.Controller;
 
-import com.abdullah.DataBase.LoginVarifier;
+import com.abdullah.LoginDataBase.LoginVarifier;
 import com.abdullah.Login.LoginBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

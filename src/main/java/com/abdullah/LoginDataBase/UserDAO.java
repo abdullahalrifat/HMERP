@@ -1,4 +1,4 @@
-package com.abdullah.DataBase;
+package com.abdullah.LoginDataBase;
 
 import com.abdullah.Login.LoginBean;
 import org.springframework.stereotype.Component;

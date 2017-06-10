@@ -1,20 +1,23 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: abdullah
-  Date: 2/8/17
-  Time: 6:45 PM
+  Date: 3/21/17
+  Time: 12:49 PM
   To change this template use File | Settings | File Templates.
 --%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
 <html lang="en">
 
 <head>
-    <title>Typography | Klorofil - Free Bootstrap Dashboard Template</title>
+    <title>Employees | Klorofil - Free Bootstrap Dashboard Template</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <!-- CSS -->
+    <link rel="stylesheet" href="/resources/OtherHardCodedDesigns/InputFormDesign.css">
     <link rel="stylesheet" href="/resources/AdminPanel/template/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="/resources/AdminPanel/template/assets/css/vendor/icon-sets.css">
     <link rel="stylesheet" href="/resources/AdminPanel/template/assets/css/main.min.css">
@@ -25,9 +28,13 @@
     <!-- ICONS -->
     <link rel="apple-touch-icon" sizes="76x76" href="/resources/AdminPanel/template/assets/img/apple-icon.png">
     <link rel="icon" type="image/png" sizes="96x96" href="/resources/AdminPanel/template/assets/img/favicon.png">
+    <!--JS
+    <script type="text/javascript" src="/resources/OtherHardCodedJS/updateCustomer.js"></script>
+        -->
+
 </head>
 
-<body>
+<body >
 <!-- WRAPPER -->
 <div id="wrapper">
     <!-- SIDEBAR -->
@@ -39,9 +46,10 @@
             <nav>
                 <ul class="nav">
                     <li><a href="index.html" class=""><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
+                    <li><a href="CustomersList.html" class=""><i class="lnr lnr-employee"></i> <span>Customers</span></a></li>
+                    <li><a href="ProductList.html" class="active"><i class="lnr lnr-employee"></i> <span>Products</span></a></li>
                     <li><a href="employees.html" class=""><i class="lnr lnr-employee"></i> <span>Employees</span></a></li>
                     <li><a href="projects.html" class=""><i class="lnr lnr-projects"></i> <span>Projects</span></a></li>
-
                     <li><a href="elements.html" class=""><i class="lnr lnr-code"></i> <span>Elements</span></a></li>
                     <li><a href="charts.html" class=""><i class="lnr lnr-chart-bars"></i> <span>Charts</span></a></li>
                     <li><a href="panels.html" class=""><i class="lnr lnr-cog"></i> <span>Panels</span></a></li>
@@ -57,7 +65,7 @@
                         </div>
                     </li>
                     <li><a href="tables.html" class=""><i class="lnr lnr-dice"></i> <span>Tables</span></a></li>
-                    <li><a href="typography.html" class="active"><i class="lnr lnr-text-format"></i> <span>Typography</span></a></li>
+                    <li><a href="typography.html" class=""><i class="lnr lnr-text-format"></i> <span>Typography</span></a></li>
                     <li><a href="icons.html" class=""><i class="lnr lnr-linearicons"></i> <span>Icons</span></a></li>
                 </ul>
             </nav>
@@ -127,35 +135,50 @@
         <!-- MAIN CONTENT -->
         <div class="main-content">
             <div class="container-fluid">
-                <h3 class="page-title">Typography</h3>
-                <div class="panel panel-headline">
-                    <div class="panel-body">
-                        <h1>Dashboard Heading 1</h1>
-                        <h2>Dashboard Heading 2</h2>
-                        <h3>Dashboard Heading 3</h3>
-                        <h4>Dashboard Heading 4</h4>
-                        <h5>Dashboard Heading 5</h5>
-                        <h6>Dashboard Heading 6</h6>
-                        <hr>
-                        <p>Appropriately benchmark web-enabled bandwidth and functionalized leadership skills. Conveniently syndicate global opportunities without interactive methods of empowerment. Collaboratively conceptualize user-centric e-tailers for visionary methodologies. Dramatically myocardinate. Phosfluorescently disintermediate unique resources whereas reliable mindshare. Competently optimize client-focused infrastructures vis-a-vis e-business human capital. Uniquely formulate sustainable benefits whereas functional results. Energistically myocardinate bleeding-edge e-business.</p>
-                        <hr>
-                        <p class="text-muted"><code>.text-muted</code> Convey meaning through color with a handful of emphasis utility classes.</p>
-                        <p class="text-primary"><code>.text-primary</code> Convey meaning through color with a handful of emphasis utility classes.</p>
-                        <p class="text-success"><code>.text-success</code> Convey meaning through color with a handful of emphasis utility classes.</p>
-                        <p class="text-info"><code>.text-info</code> Convey meaning through color with a handful of emphasis utility classes.</p>
-                        <p class="text-warning"><code>.text-warning</code> Convey meaning through color with a handful of emphasis utility classes.</p>
-                        <p class="text-danger"><code>.text-danger</code> Convey meaning through color with a handful of emphasis utility classes.</p>
-                        <hr>
-                        <p>Make a paragraph stand out by adding <code>.lead</code></p>
-                        <p class="lead">Objectively re-engineer maintainable total linkage after proactive intellectual capital. Dynamically evolve best-of-breed e-services for user-centric customer.</p>
-                        <hr>
-                        <div class="well">
-                            <p class="text-left"><code>.text-left</code> Left aligned text.</p>
-                            <p class="text-center"><code>.text-center</code> Center aligned text.</p>
-                            <p class="text-right"><code>.text-right</code> Right aligned text.</p>
+                <h3 class="page-title">Tables</h3>
+                <a class="btn" href="AddProducts.html"><img src="/resources/AdminPanel/template/assets/img/add.png" class="img-circle" alt="Avatar"></a>
+                <!-- TABLE HOVER -->
+                <div class="panel" id="UpdateModal">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Add Products</h3>
+                    </div>
+                    <div class="panel-body" >
+                        <!--body goes here-->
+                        <div class="form">
+                            <div class="form-style-5">
+                                <form  id ="CustomerForm" method="POST" commandName="update-Products-entity" action="/update-products.html">
+
+                                    <fieldset>
+                                        <input type="hidden" name="Id" id="pid" type="number" placeholder="ID">
+                                        <input type="text" name="name" id="pname" placeholder="Product *">
+                                        <input type="text" name="price" id="pprice" placeholder="Price *">
+                                        <input type="text" name="tax" id="ptax" placeholder="Tax *">
+                                    </fieldset>
+                                    <input type="submit" value="Apply" />
+
+                                </form>
+                            </div>
+
                         </div>
+
+
+                        <!--Body Ends Here-->
+                        <c:forEach  items="${productlist}" var="listValue">
+                            <script>
+                                alert("mara khai");
+                                document.getElementById("pid").value=parseInt('${listValue.getId()}');
+                                document.getElementById("pname").value='${listValue.getName()}';
+                                document.getElementById("pprice").value=parseInt('${listValue.getPrice()}');
+                                document.getElementById("ptax").value=parseFloat('${listValue.getTax()}');
+                            </script>
+                        </c:forEach>
+
                     </div>
                 </div>
+                <!-- END TABLE HOVER -->
+
+
+
             </div>
         </div>
         <!-- END MAIN CONTENT -->
@@ -173,6 +196,7 @@
 <script src="/resources/AdminPanel/template/assets/js/bootstrap/bootstrap.min.js"></script>
 <script src="/resources/AdminPanel/template/assets/js/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <script src="/resources/AdminPanel/template/assets/js/klorofil.min.js"></script>
+
 </body>
 
 </html>

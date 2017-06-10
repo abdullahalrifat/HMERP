@@ -39,7 +39,7 @@
     <!-- SIDEBAR -->
     <div class="sidebar">
         <div class="brand">
-            <a href="index.html"><img src="/resources/AdminPanel/template/assets/img/logo.png" alt="Klorofil Logo" class="img-responsive logo"></a>
+            <a href="index.html"><img src="/resources/AdminPanel/template/assets/img/logo-rhivaan.png" alt="Klorofil Logo" class="img-responsive logo"></a>
         </div>
         <div class="sidebar-scroll">
             <nav>

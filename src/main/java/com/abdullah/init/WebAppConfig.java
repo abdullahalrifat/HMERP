@@ -2,10 +2,12 @@ package com.abdullah.init;
 
 import com.abdullah.CustomerListDataBase.CustomerDAO;
 import com.abdullah.CustomerListDataBase.jdbcCustomerDAO;
-import com.abdullah.DataBase.JdbcUserDAO;
-import com.abdullah.DataBase.UserDAO;
 import com.abdullah.EmployeeDatabase.EmployeeDAO;
 import com.abdullah.EmployeeDatabase.JdbcEmployeeDAO;
+import com.abdullah.LoginDataBase.JdbcUserDAO;
+import com.abdullah.LoginDataBase.UserDAO;
+import com.abdullah.ProductDatabase.ProductsDAO;
+import com.abdullah.ProductDatabase.jdbcProductsDAO;
 import com.abdullah.ProjectDatabase.ProjectsDAO;
 import com.abdullah.ProjectDatabase.jdbcProjectsDAO;
 import org.springframework.context.annotation.Bean;
@@ -70,6 +72,10 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 	@Bean
 	public CustomerDAO getCustomerDAO() {
 		return new jdbcCustomerDAO(dataSource());
+	}
+	@Bean
+	public ProductsDAO getProductsDAO() {
+		return new jdbcProductsDAO(dataSource());
 	}
 
 

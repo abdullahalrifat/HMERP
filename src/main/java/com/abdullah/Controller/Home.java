@@ -4,6 +4,8 @@ import com.abdullah.CustomerListDataBase.CustomerDetails;
 import com.abdullah.CustomersList.CustomersListBean;
 import com.abdullah.Employee.EmployeeBean;
 import com.abdullah.EmployeeDatabase.EmployeeDetails;
+import com.abdullah.Product.ProductListBean;
+import com.abdullah.ProductDatabase.ProductDetails;
 import com.abdullah.Project.ProjectBean;
 import com.abdullah.ProjectDatabase.ProjectDetails;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -252,7 +254,7 @@ public class Home
         {
             model = new ModelAndView("CustomersList");
 
-            List<CustomersListBean> customerList = cumdet.getList();
+            List<CustomersListBean> customerList = cumdet.getListofCustomers();
 
 
             //checking if reading the databse
@@ -274,6 +276,75 @@ public class Home
         try
         {
             model = new ModelAndView("AddCustomers","register-Customers-entity",new CustomersListBean());
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return model;
+    }
+    @RequestMapping(value="/UpdateCustomers")
+    public ModelAndView processUpdateCustomers()
+    {
+        ModelAndView model= null;
+        try
+        {
+            model = new ModelAndView("UpdateCustomers","update-Customers-entity",new CustomersListBean());
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return model;
+    }
+
+
+    @Autowired
+    ProductDetails prdet;
+    @RequestMapping(value="/ProductList")
+    public ModelAndView processProducts()
+    {
+        ModelAndView model= null;
+        try
+        {
+            model = new ModelAndView("ProductList");
+
+            List<ProductListBean> productList = prdet.getListProducts();
+
+
+            //checking if reading the databse
+            //System.out.println(projectList.get(0).getProjectName());
+
+            model.addObject("productList",productList);
+
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return model;
+    }
+    @RequestMapping(value="/AddProducts")
+    public ModelAndView processAddProduct()
+    {
+        ModelAndView model= null;
+        try
+        {
+            model = new ModelAndView("AddProducts","register-Product-entity",new ProductListBean());
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return model;
+    }
+    @RequestMapping(value="/UpdateProducts")
+    public ModelAndView processUpdateProducts()
+    {
+        ModelAndView model= null;
+        try
+        {
+            model = new ModelAndView("UpdateProducts","update-Product-entity",new ProductListBean());
         }
         catch(Exception e)
         {

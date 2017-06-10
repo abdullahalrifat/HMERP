@@ -33,13 +33,15 @@
     <!-- SIDEBAR -->
     <div class="sidebar">
         <div class="brand">
-            <a href="index.html"><img src="/resources/AdminPanel/template/assets/img/logo.png" alt="Klorofil Logo" class="img-responsive logo"></a>
+            <a href="index.html"><img src="/resources/AdminPanel/template/assets/img/logo-rhivaan.png" alt="Klorofil Logo" class="img-responsive logo"></a>
         </div>
         <div class="sidebar-scroll">
             <nav>
                 <ul class="nav">
                     <li><a href="index.html" class="active"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
                     <li><a href="CustomersList.html" class=""><i class="lnr lnr-employee"></i> <span>Customers</span></a></li>
+                    <li><a href="ProductList.html" class=""><i class="lnr lnr-employee"></i> <span>Products</span></a></li>
+
                     <li><a href="employees.html" class=""><i class="lnr lnr-employee"></i> <span>Employees</span></a></li>
                     <li><a href="projects.html" class=""><i class="lnr lnr-projects"></i> <span>Projects</span></a></li>
 

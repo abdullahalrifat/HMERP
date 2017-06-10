@@ -35,7 +35,7 @@
             <div class="auth-box lockscreen clearfix">
                 <div class="content">
                     <h1 class="sr-only">Klorofil - Free Bootstrap dashboard</h1>
-                    <div class="logo text-center"><img src="/resources/AdminPanel/template/assets/img/logo-dark.png" alt="Klorofil Logo"></div>
+                    <div class="logo text-center"><img src="/resources/AdminPanel/template/assets/img/logo-rhivaan.png" alt="Klorofil Logo"></div>
                     <div class="user text-center">
                         <img src="/resources/AdminPanel/template/assets/img/user-medium.png" class="img-circle" alt="Avatar">
                         <h2 class="name">Samuel Gold</h2>

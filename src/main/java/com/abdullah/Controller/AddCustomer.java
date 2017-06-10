@@ -6,18 +6,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
- * Created by abdullah on 6/8/17.
+ * Created by abdullah on 6/10/17.
  */
 @Controller
-public class AddCustomers
-{
+public class AddCustomer {
+
     @Autowired
     CustomerDetails cd;
-    @RequestMapping(value="/add-customers")
-    public ModelAndView processPersonRegister(@ModelAttribute CustomersListBean customersListBean)
+    @RequestMapping(value="/add-customer")
+    public ModelAndView processProductRegister(@ModelAttribute CustomersListBean customersListBean)
     {
 
         ModelAndView model= null;
@@ -25,6 +29,7 @@ public class AddCustomers
         {
             if(customersListBean.getName()!=""&&customersListBean.getMobile()!=""&& customersListBean.getAddress()!=""&&customersListBean.getCountry()!="")
             {
+                //System.out.println(customersListBean.getName());
                 cd.registerCustomers(customersListBean.getName(),customersListBean.getMobile(),customersListBean.getEmail(),customersListBean.getAddress(),customersListBean.getPinCode(),customersListBean.getCountry(),customersListBean.getCity(),customersListBean.getBankDetails());
                 model = new ModelAndView("Home");
             }
@@ -32,9 +37,6 @@ public class AddCustomers
             {
                 model = new ModelAndView("AddCustomers");
             }
-
-
-
         }
         catch(Exception e)
         {
@@ -42,4 +44,31 @@ public class AddCustomers
         }
         return model;
     }
+
+    @Autowired
+    CustomerDetails empu;
+    @RequestMapping(value="/update-customers")
+    public ModelAndView processUpdateCustomers(@RequestParam int userId)
+    {
+        ModelAndView model= null;
+        List<CustomersListBean> list=empu.getListofCustomers();
+       // System.out.println(userId);
+        try
+        {
+            model = new ModelAndView("UpdateCustomers");
+            List<CustomersListBean> l=new ArrayList();
+            CustomersListBean clb=list.get(userId-1);
+            l.add(clb);
+            //checking if reading the databse
+            //System.out.println(l.get(0).getName());
+            model.addObject("customerlist",l);
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        // System.out.println(userId);
+        return model;
+    }
 }
+

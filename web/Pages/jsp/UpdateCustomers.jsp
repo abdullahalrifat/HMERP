@@ -28,9 +28,13 @@
     <!-- ICONS -->
     <link rel="apple-touch-icon" sizes="76x76" href="/resources/AdminPanel/template/assets/img/apple-icon.png">
     <link rel="icon" type="image/png" sizes="96x96" href="/resources/AdminPanel/template/assets/img/favicon.png">
+    <!--JS
+    <script type="text/javascript" src="/resources/OtherHardCodedJS/updateCustomer.js"></script>
+        -->
+
 </head>
 
-<body>
+<body >
 <!-- WRAPPER -->
 <div id="wrapper">
     <!-- SIDEBAR -->
@@ -134,24 +138,25 @@
                 <h3 class="page-title">Tables</h3>
                 <a class="btn" href="AddCustomers.html"><img src="/resources/AdminPanel/template/assets/img/add.png" class="img-circle" alt="Avatar"></a>
                 <!-- TABLE HOVER -->
-                <div class="panel">
+                <div class="panel" id="UpdateModal">
                     <div class="panel-heading">
                         <h3 class="panel-title">Add Customers</h3>
                     </div>
-                    <div class="panel-body">
+                    <div class="panel-body" >
                         <!--body goes here-->
                         <div class="form">
                             <div class="form-style-5">
-                                <form method="POST" commandName="register-Customer-entity" action="/add-customer.html">
-                                    <fieldset>
+                                <form  id ="CustomerForm" method="POST" commandName="update-Customers-entity" action="/update-customers.html">
 
-                                        <input type="text" name="name" placeholder="Your Name *">
-                                        <input type="text" name="mobile" placeholder="Your Mobile *">
-                                        <input type="email" name="email" placeholder="Your Email *">
-                                        <textarea name="address" placeholder="Address"></textarea>
-                                        <input type="text" name="pinCode" placeholder="Pin Code">
-                                        <label for="job">Country:</label>
-                                        <select id="job" name="country">
+                                    <fieldset>
+                                        <input type="hidden" name="Id" id="pid" type="number" placeholder="ID">
+                                        <input type="text" name="name" id="pname" placeholder="Your Name *">
+                                        <input type="text" name="mobile" id="pmobile" placeholder="Your Mobile *">
+                                        <input type="email" name="email" id="pemail" placeholder="Your Email *">
+                                        <textarea name="address" id="paddress" placeholder="Address"></textarea>
+                                        <input type="text" name="pinCode" id="ppincode" placeholder="Pin Code">
+                                        <label for="pcountry">Country:</label>
+                                        <select name="country" id="pcountry">
 
                                             <option value="Afghanistan">Afghanistan</option>
 
@@ -672,16 +677,34 @@
                                             <option value="Zimbabwe">Zimbabwe</option>
 
                                         </select>
-                                        <input type="text" name="city" placeholder="City">
-                                        <textarea name="bankDetails" placeholder="Bank Details"></textarea>
+                                        <input type="text" name="city" id="pcity" placeholder="City">
+                                        <textarea name="bankDetails" id="pbankdetails" placeholder="Bank Details"></textarea>
                                     </fieldset>
 
                                     <input type="submit" value="Apply" />
+
                                 </form>
                             </div>
 
                         </div>
+
+
                         <!--Body Ends Here-->
+                        <c:forEach  items="${customerlist}" var="listValue">
+                            <script>
+                                alert("mara khai");
+                                document.getElementById("pid").value=parseInt('${listValue.getId()}');
+                                document.getElementById("pname").value='${listValue.getName()}';
+                                document.getElementById("pmobile").value='${listValue.getMobile()}';
+                                document.getElementById("pemail").value='${listValue.getEmail()}';
+                                document.getElementById("paddress").value='${listValue.getAddress()}';
+                                document.getElementById("ppincode").value='${listValue.getPinCode()}';
+                                document.getElementById("pcountry").value='${listValue.getCountry()}';
+                                document.getElementById("pcity").value='${listValue.getCity()}';
+                                document.getElementById("pbankdetails").value='${listValue.getBankDetails()}';
+                            </script>
+                        </c:forEach>
+
                     </div>
                 </div>
                 <!-- END TABLE HOVER -->
@@ -705,6 +728,8 @@
 <script src="/resources/AdminPanel/template/assets/js/bootstrap/bootstrap.min.js"></script>
 <script src="/resources/AdminPanel/template/assets/js/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <script src="/resources/AdminPanel/template/assets/js/klorofil.min.js"></script>
+
 </body>
 
 </html>
+

@@ -14,7 +14,7 @@ public class CustomerDetails
 {
     @Autowired
     private CustomerDAO customerDAO;
-    public List<CustomersListBean> getList()
+    public List<CustomersListBean> getListofCustomers()
     {
 
         List<CustomersListBean> listUser=customerDAO.ListOfCustomers();

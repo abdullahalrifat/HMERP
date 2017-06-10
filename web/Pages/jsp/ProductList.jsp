@@ -45,8 +45,8 @@
                 <nav>
                     <ul class="nav">
                         <li><a href="index.html" class=""><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
-                        <li><a href="CustomersList.html" class="active"><i class="lnr lnr-employee"></i> <span>Customers</span></a></li>
-                        <li><a href="ProductList.html" class=""><i class="lnr lnr-employee"></i> <span>Products</span></a></li>
+                        <li><a href="CustomersList.html" class=""><i class="lnr lnr-employee"></i> <span>Customers</span></a></li>
+                        <li><a href="ProductList.html" class="active"><i class="lnr lnr-employee"></i> <span>Products</span></a></li>
                         <li><a href="employees.html" class=""><i class="lnr lnr-employee"></i> <span>Employees</span></a></li>
                         <li><a href="projects.html" class=""><i class="lnr lnr-projects"></i> <span>Projects</span></a></li>
                         <li><a href="elements.html" class=""><i class="lnr lnr-code"></i> <span>Elements</span></a></li>
@@ -135,11 +135,11 @@
             <div class="main-content">
                 <div class="container-fluid">
                     <h3 class="page-title">Tables</h3>
-                    <a class="btn" href="AddCustomers.html"><img src="/resources/AdminPanel/template/assets/img/add.png" class="img-circle" alt="Avatar"></a>
+                    <a class="btn" href="AddProducts.html"><img src="/resources/AdminPanel/template/assets/img/add.png" class="img-circle" alt="Avatar"></a>
                     <!-- TABLE HOVER -->
                     <div class="panel">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Customers</h3>
+                            <h3 class="panel-title">Products</h3>
                         </div>
                         <div class="panel-body">
 
@@ -149,13 +149,13 @@
                                     <!-- Adding menu for the employee table -->
                                     <th>#</th>
                                     <th>Name</th>
-                                    <th>Phone</th>
-                                    <th>Address</th>
+                                    <th>Price</th>
+                                    <th>Tax</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <!-- adding all employees  -->
-                                <c:forEach var = "listValue" items = "${customerList}">
+                                <c:forEach var = "listValue" items = "${productList}">
 
                                     <tr>
                                         <td>
@@ -165,13 +165,13 @@
                                             <c:out value="${listValue.getName()}"/>
                                         </td>
                                         <td>
-                                            <c:out value="${listValue.getMobile()}"/>
+                                            <c:out value="${listValue.getPrice()}"/>
                                         </td>
                                         <td>
-                                            <c:out value="${listValue.getAddress()}"/>
+                                            <c:out value="${listValue.getTax()}"/>
                                         </td>
                                         <td>
-                                            <a class="btn btn-warning btn-xs" href="<c:out value='/update-customers.html?userId=${listValue.getId()}' />">Edit</a>
+                                            <a class="btn btn-warning btn-xs" href="<c:out value='/update-products.html?userId=${listValue.getId()}' />">Edit</a>
 
                                             <a class="btn btn-xs btn-danger" href="http://demo.swot.co.in/accounting/public/customers/delete/1" onclick="return confirm('Are you sure to delete this?')"> Delete</a>
                                             <!--<a class="btn btn-success btn-xs"  href="http://demo.swot.co.in/accounting/public/customers/transactions/1"><span class="fa fa-files-o" aria-hidden="true"></span> View Transactions</a> -->
