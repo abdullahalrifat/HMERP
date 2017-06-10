@@ -1,6 +1,6 @@
 package com.abdullah.CustomerListDataBase;
 
-import com.abdullah.CustomersList.CustomersListBean;
+import com.abdullah.Customers.CustomersListBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;

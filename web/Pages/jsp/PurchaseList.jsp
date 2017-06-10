@@ -46,7 +46,10 @@
                     <ul class="nav">
                         <li><a href="index.html" class=""><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
                         <li><a href="CustomersList.html" class=""><i class="lnr lnr-employee"></i> <span>Customers</span></a></li>
-                        <li><a href="ProductList.html" class="active"><i class="lnr lnr-employee"></i> <span>Products</span></a></li>
+                        <li><a href="ProductList.html" class=""><i class="lnr lnr-employee"></i> <span>Products</span></a></li>
+                        <li><a href="PurchaseList.html" class="active"><i class="lnr lnr-employee"></i> <span>Purchase List</span></a></li>
+                        <li><a href="SalesList.html" class=""><i class="lnr lnr-employee"></i> <span>Sales List</span></a></li>
+
                         <li><a href="employees.html" class=""><i class="lnr lnr-employee"></i> <span>Employees</span></a></li>
                         <li><a href="projects.html" class=""><i class="lnr lnr-projects"></i> <span>Projects</span></a></li>
                         <li><a href="elements.html" class=""><i class="lnr lnr-code"></i> <span>Elements</span></a></li>
@@ -135,11 +138,11 @@
             <div class="main-content">
                 <div class="container-fluid">
                     <h3 class="page-title">Tables</h3>
-                    <a class="btn" href="AddProducts.html"><img src="/resources/AdminPanel/template/assets/img/add.png" class="img-circle" alt="Avatar"></a>
+                    <a class="btn" href="AddPurchase.html"><img src="/resources/AdminPanel/template/assets/img/add.png" class="img-circle" alt="Avatar"></a>
                     <!-- TABLE HOVER -->
                     <div class="panel">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Products</h3>
+                            <h3 class="panel-title">Purchases</h3>
                         </div>
                         <div class="panel-body">
 
@@ -148,32 +151,55 @@
                                 <tr>
                                     <!-- Adding menu for the employee table -->
                                     <th>#</th>
-                                    <th>Name</th>
-                                    <th>Price</th>
+                                    <th>Date</th>
+                                    <th>Product</th>
+                                    <th>Supplier</th>
+                                    <th>Rate</th>
+                                    <th>Quantity</th>
+                                    <th>Total</th>
                                     <th>Tax</th>
+                                    <th>Net</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <!-- adding all employees  -->
-                                <c:forEach var = "listValue" items = "${productList}">
+                                <c:forEach var = "listValue" items = "${purchaseList}">
 
                                     <tr>
                                         <td>
                                             <c:out value="${listValue.getId()}"/>
                                         </td>
+
                                         <td>
-                                            <c:out value="${listValue.getName()}"/>
+                                            <c:out value="${listValue.getDate()}"/>
+                                        </td>
+
+                                        <td>
+                                            <c:out value="${listValue.getProduct()}"/>
                                         </td>
                                         <td>
-                                            <c:out value="${listValue.getPrice()}"/>
+                                            <c:out value="${listValue.getSupplier()}"/>
+                                        </td>
+
+                                        <td>
+                                            <c:out value="${listValue.getRate()}"/>
+                                        </td>
+                                        <td>
+                                            <c:out value="${listValue.getQuantity()}"/>
+                                        </td>
+                                        <td>
+                                            <c:out value="${listValue.getTotalAmount()}"/>
                                         </td>
                                         <td>
                                             <c:out value="${listValue.getTax()}"/>
                                         </td>
                                         <td>
-                                            <a class="btn btn-warning btn-xs" href="<c:out value='/update-products.html?userId=${listValue.getId()}' />">Edit</a>
+                                            <c:out value="${listValue.getTotalAmount()}*(100/${listValue.getTax()})"/>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-warning btn-xs" href="<c:out value='/update-purchase.html?userId=${listValue.getId()}' />">Edit</a>
 
-                                            <a class="btn btn-xs btn-danger" href="<c:out value='/delete-products-row.html?userId=${listValue.getId()}' />" onclick="return confirm('Are you sure to delete this?')"> Delete</a>
+                                            <a class="btn btn-xs btn-danger" href="<c:out value='/delete-purchase-row.html?userId=${listValue.getId()}' />" onclick="return confirm('Are you sure to delete this?')"> Delete</a>
                                             <!--<a class="btn btn-success btn-xs"  href="http://demo.swot.co.in/accounting/public/customers/transactions/1"><span class="fa fa-files-o" aria-hidden="true"></span> View Transactions</a> -->
                                         </td>
                                     </tr>

@@ -1,4 +1,4 @@
-package com.abdullah.CustomersList;
+package com.abdullah.Customers;
 
 /**
  * Created by abdullah on 6/8/17.

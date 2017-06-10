@@ -10,6 +10,10 @@ import com.abdullah.ProductDatabase.ProductsDAO;
 import com.abdullah.ProductDatabase.jdbcProductsDAO;
 import com.abdullah.ProjectDatabase.ProjectsDAO;
 import com.abdullah.ProjectDatabase.jdbcProjectsDAO;
+import com.abdullah.PurchaseDatabase.PurchaseDAO;
+import com.abdullah.PurchaseDatabase.jdbcPurchaseDAO;
+import com.abdullah.SalesDatabase.SalesDAO;
+import com.abdullah.SalesDatabase.jdbcSalesDAO;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -76,6 +80,14 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 	@Bean
 	public ProductsDAO getProductsDAO() {
 		return new jdbcProductsDAO(dataSource());
+	}
+	@Bean
+	public PurchaseDAO getPurchaseDAO() {
+		return new jdbcPurchaseDAO(dataSource());
+	}
+	@Bean
+	public SalesDAO getSalesDAO() {
+		return new jdbcSalesDAO(dataSource());
 	}
 
 

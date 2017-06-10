@@ -1,6 +1,6 @@
 package com.abdullah.CustomerListDataBase;
 
-import com.abdullah.CustomersList.CustomersListBean;
+import com.abdullah.Customers.CustomersListBean;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

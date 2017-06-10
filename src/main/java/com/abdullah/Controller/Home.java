@@ -1,13 +1,17 @@
 package com.abdullah.Controller;
 
 import com.abdullah.CustomerListDataBase.CustomerDetails;
-import com.abdullah.CustomersList.CustomersListBean;
+import com.abdullah.Customers.CustomersListBean;
 import com.abdullah.Employee.EmployeeBean;
 import com.abdullah.EmployeeDatabase.EmployeeDetails;
 import com.abdullah.Product.ProductListBean;
 import com.abdullah.ProductDatabase.ProductDetails;
 import com.abdullah.Project.ProjectBean;
 import com.abdullah.ProjectDatabase.ProjectDetails;
+import com.abdullah.Purchase.PurchaseListBean;
+import com.abdullah.PurchaseDatabase.PurchaseDetails;
+import com.abdullah.Sales.SalesListBean;
+import com.abdullah.SalesDatabase.SalesDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -250,6 +254,7 @@ public class Home
     public ModelAndView processCustomers()
     {
         ModelAndView model= null;
+
         try
         {
             model = new ModelAndView("CustomersList");
@@ -345,6 +350,120 @@ public class Home
         try
         {
             model = new ModelAndView("UpdateProducts","update-Product-entity",new ProductListBean());
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return model;
+    }
+    @Autowired
+    PurchaseDetails purdet;
+    @RequestMapping(value="/PurchaseList")
+    public ModelAndView processPurchase()
+    {
+        ModelAndView model= null;
+        try
+        {
+            model = new ModelAndView("PurchaseList");
+
+            List<PurchaseListBean> purchaseList = purdet.getListPurchase();
+
+
+            //checking if reading the databse
+            //System.out.println(purchaseList.get(0).getProduct());
+
+            model.addObject("purchaseList",purchaseList);
+
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return model;
+    }
+    @RequestMapping(value="/AddPurchase")
+    public ModelAndView processAddPurchase()
+    {
+        ModelAndView model= null;
+        try
+        {
+            model = new ModelAndView("AddPurchase","register-Purchase-entity",new PurchaseListBean());
+            List<ProductListBean> proList = prdet.getListProducts();
+
+
+            //checking if reading the databse
+            //System.out.println(projectList.get(0).getProjectName());
+
+            model.addObject("productList",proList);
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return model;
+    }
+    @RequestMapping(value="/UpdatePurchase")
+    public ModelAndView processUpdatePurchase()
+    {
+        ModelAndView model= null;
+        try
+        {
+            model = new ModelAndView("UpdatePurchase","update-Purchase-entity",new PurchaseListBean());
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return model;
+    }
+    @Autowired
+    SalesDetails sldet;
+    @RequestMapping(value="/SalesList")
+    public ModelAndView processSales()
+    {
+        ModelAndView model= null;
+        try
+        {
+            model = new ModelAndView("SalesList");
+
+            List<SalesListBean>salesList = sldet.getListSales();
+
+            List<ProductListBean> proList = prdet.getListProducts();
+            //checking if reading the databse
+            //System.out.println(projectList.get(0).getProjectName());
+
+            model.addObject("salesList",salesList);
+            model.addObject("productList",proList);
+
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return model;
+    }
+    @RequestMapping(value="/AddSales")
+    public ModelAndView processAddSales()
+    {
+        ModelAndView model= null;
+        try
+        {
+            model = new ModelAndView("AddSales","register-Sales-entity",new SalesListBean());
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return model;
+    }
+    @RequestMapping(value="/UpdateSales")
+    public ModelAndView processUpdateSales()
+    {
+        ModelAndView model= null;
+        try
+        {
+            model = new ModelAndView("UpdateSales","update-Sales-entity",new SalesListBean());
         }
         catch(Exception e)
         {
