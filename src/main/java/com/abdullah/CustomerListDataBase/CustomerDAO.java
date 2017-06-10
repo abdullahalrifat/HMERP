@@ -13,4 +13,6 @@ public interface CustomerDAO
 {
     public void insertCustomers(CustomersListBean customersListBean);
     public List<CustomersListBean> ListOfCustomers();
+    public void updateCustomer(CustomersListBean customersListBean);
+    public void DeleteCustomer(int userid);
 }

@@ -146,7 +146,7 @@
                         <!--body goes here-->
                         <div class="form">
                             <div class="form-style-5">
-                                <form  id ="CustomerForm" method="POST" commandName="update-Customers-entity" action="/update-customers.html">
+                                <form  id ="CustomerForm" method="POST" commandName="update-Customers-entity" action="/update-customers-row.html">
 
                                     <fieldset>
                                         <input type="hidden" name="Id" id="pid" type="number" placeholder="ID">
@@ -692,7 +692,7 @@
                         <!--Body Ends Here-->
                         <c:forEach  items="${customerlist}" var="listValue">
                             <script>
-                                alert("mara khai");
+                               //alert("mara khai");
                                 document.getElementById("pid").value=parseInt('${listValue.getId()}');
                                 document.getElementById("pname").value='${listValue.getName()}';
                                 document.getElementById("pmobile").value='${listValue.getMobile()}';

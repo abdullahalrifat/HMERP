@@ -13,4 +13,6 @@ public interface ProductsDAO
 {
     public void insertProducts(ProductListBean productsListBean);
     public List<ProductListBean> ListOfProducts();
+    public void updateProduct(ProductListBean productListBean);
+    public void DeleteProduct(int userid);
 }

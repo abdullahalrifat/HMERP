@@ -44,13 +44,11 @@ public class AddProducts {
         return model;
     }
 
-    @Autowired
-    ProductDetails empu;
     @RequestMapping(value="/update-products")
     public ModelAndView processUpdateProducts(@RequestParam int userId)
     {
         ModelAndView model= null;
-        List<ProductListBean> list=empu.getListProducts();
+        List<ProductListBean> list=cd.getListProducts();
         //System.out.println(list.size());
         try
         {
@@ -67,6 +65,53 @@ public class AddProducts {
             e.printStackTrace();
         }
         // System.out.println(userId);
+        return model;
+    }
+
+    @RequestMapping(value="/update-products-row")
+    public ModelAndView processProductUpdateRow(@ModelAttribute ProductListBean productListBean)
+    {
+
+        ModelAndView model= null;
+        try
+        {
+            if(productListBean.getName()!=""&&productListBean.getPrice()!=0&& productListBean.getTax()!=0.0)
+            {
+               cd.updateProducts(productListBean);
+                model = new ModelAndView("Home");
+            }
+            else
+            {
+                model = new ModelAndView("AddProducts");
+            }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return model;
+    }
+    @RequestMapping(value="/delete-products-row")
+    public ModelAndView processProductDeleteRow(@RequestParam int userId)
+    {
+
+        ModelAndView model= null;
+        try
+        {
+                cd.DeleteProducts(userId);
+                model = new ModelAndView("ProductList");
+                List<ProductListBean> productList = cd.getListProducts();
+
+
+            //checking if reading the databse
+            //System.out.println(projectList.get(0).getProjectName());
+
+                model.addObject("productList",productList);
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
         return model;
     }
 }

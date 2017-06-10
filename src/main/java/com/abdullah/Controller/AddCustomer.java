@@ -45,13 +45,12 @@ public class AddCustomer {
         return model;
     }
 
-    @Autowired
-    CustomerDetails empu;
+
     @RequestMapping(value="/update-customers")
     public ModelAndView processUpdateCustomers(@RequestParam int userId)
     {
         ModelAndView model= null;
-        List<CustomersListBean> list=empu.getListofCustomers();
+        List<CustomersListBean> list=cd.getListofCustomers();
        // System.out.println(userId);
         try
         {
@@ -70,5 +69,55 @@ public class AddCustomer {
         // System.out.println(userId);
         return model;
     }
+
+    @RequestMapping(value="/update-customers-row")
+    public ModelAndView processProductUpdateRow(@ModelAttribute CustomersListBean customersListBean)
+    {
+
+        ModelAndView model= null;
+        try
+        {
+            if(customersListBean.getName()!=""&&customersListBean.getMobile()!=""&& customersListBean.getAddress()!=""&&customersListBean.getCountry()!="")
+            {
+                //System.out.println(customersListBean.getName());
+                cd.updateCustomer(customersListBean);
+                model = new ModelAndView("Home");
+            }
+            else
+            {
+                model = new ModelAndView("AddCustomers");
+            }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return model;
+    }
+    @RequestMapping(value="/delete-customers-row")
+    public ModelAndView processProductDeleteRow(@RequestParam int userId)
+    {
+
+        ModelAndView model= null;
+        try
+        {
+                //System.out.println(customersListBean.getName());
+                cd.DeleteCustomer(userId);
+                model = new ModelAndView("CustomersList");
+                List<CustomersListBean> customerList = cd.getListofCustomers();
+
+
+            //checking if reading the databse
+            //System.out.println(projectList.get(0).getProjectName());
+
+                model.addObject("customerList",customerList);
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return model;
+    }
+
 }
 

@@ -173,7 +173,7 @@
                                         <td>
                                             <a class="btn btn-warning btn-xs" href="<c:out value='/update-customers.html?userId=${listValue.getId()}' />">Edit</a>
 
-                                            <a class="btn btn-xs btn-danger" href="http://demo.swot.co.in/accounting/public/customers/delete/1" onclick="return confirm('Are you sure to delete this?')"> Delete</a>
+                                            <a class="btn btn-xs btn-danger" href="<c:out value='/delete-customers-row.html?userId=${listValue.getId()}' />" onclick="return confirm('Are you sure to delete this?')"> Delete</a>
                                             <!--<a class="btn btn-success btn-xs"  href="http://demo.swot.co.in/accounting/public/customers/transactions/1"><span class="fa fa-files-o" aria-hidden="true"></span> View Transactions</a> -->
                                         </td>
                                     </tr>

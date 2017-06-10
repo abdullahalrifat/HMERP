@@ -61,4 +61,17 @@ public class jdbcCustomerDAO extends JdbcDaoSupport implements CustomerDAO
         });
         return listCustomers;
     }
+
+    @Override
+    public void updateCustomer(CustomersListBean customersListBean) {
+        String sql ="UPDATE Customers set Name = ?, Mobile = ?, Email = ?, Address = ?, Pincode = ?, Country = ?, City = ?, BankDetails = ? where Id = ?";
+        jdbcTemplate.update(sql,customersListBean.getName(),customersListBean.getMobile(),customersListBean.getEmail(),customersListBean.getAddress(),customersListBean.getPinCode(),customersListBean.getCountry(),customersListBean.getCity(),customersListBean.getBankDetails(),customersListBean.getId());
+
+    }
+
+    @Override
+    public void DeleteCustomer(int userid) {
+        String sql ="DELETE FROM Customers Where Id = ?";
+        jdbcTemplate.update(sql,userid);
+    }
 }

@@ -26,5 +26,11 @@ public class ProductDetails
         ProductListBean productListBean=new ProductListBean(size+1, name,  price,tax);
         productsDAO.insertProducts(productListBean);
     }
+    public void updateProducts(ProductListBean productListBean) {
+        productsDAO.updateProduct(productListBean);
+    }
+    public void DeleteProducts(int userid) {
+        productsDAO.DeleteProduct(userid);
+    }
 }
 

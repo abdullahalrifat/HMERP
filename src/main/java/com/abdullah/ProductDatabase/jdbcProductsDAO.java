@@ -56,4 +56,17 @@ public class jdbcProductsDAO extends JdbcDaoSupport implements ProductsDAO
         });
         return listProducts;
     }
+
+    @Override
+    public void updateProduct(ProductListBean productListBean) {
+        String sql = "UPDATE Products set Name = ?, Price = ?, Tax = ? where Id = ?";
+        jdbcTemplate.update(sql,productListBean.getName(),productListBean.getPrice(),productListBean.getTax(),productListBean.getId());
+    }
+
+    @Override
+    public void DeleteProduct(int userid) {
+        String sql ="DELETE FROM Products Where Id = ?";
+        jdbcTemplate.update(sql,userid);
+    }
+
 }
