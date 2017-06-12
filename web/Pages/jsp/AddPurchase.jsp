@@ -166,7 +166,7 @@
                                         </script>
                                         <input type="text" name="billNo" placeholder="Bill No *">
                                         <label for="product">Products:</label>
-                                        <select id="product" name="product">
+                                        <select id="product" onchange="update();updateQuantity()"name="product">
                                         </select>
                                         <c:forEach  items="${productList}" var="listValue">
                                             <script>
@@ -186,10 +186,11 @@
 
                                             <option value="NOKIA">NOKIA</option>
                                         </select>
-                                        <input type="text" name="tax" placeholder="Tax *">
-                                        <input type="text" name="quantity" placeholder="Quantity *">
-                                        <input type="text" name="rate" placeholder="Rate *">
-                                        <input type="text" name="totalAmount" placeholder="Total Amount">
+                                        <input type="number" name="tax" id="tax" onchange="updateQuantity()" placeholder="Tax *">
+                                        <input type="number" name="quantity" id="quantity" onchange="updateQuantity()" placeholder="Quantity *">
+                                        <input type="number" name="rate" id="rate" onchange="updateQuantity()" placeholder="Rate *">
+                                        <input type="number" name="totalAmount" id="total" onchange="updateQuantity()" placeholder="Total Amount">
+                                        <input type="number" name="net" id="net" placeholder="Net">
                                         <label for="payMode">Country:</label>
                                         <select id="payMode" name="payMode">
                                             <option value="HandCash">Hand Cash</option>
@@ -205,6 +206,40 @@
 
                         </div>
                         <!--Body Ends Here-->
+                        <script>
+                            var price;
+                            var tax;
+                            function update()
+                            {
+                                //alert(selectedValue);
+                                <c:forEach  items="${productList}" var="listValue">
+                                compare('${listValue.getName()}','${listValue.getPrice()}','${listValue.getTax()}');
+                                </c:forEach>
+                            }
+                            function compare()
+                            {
+                                var selectBox = document.getElementById("product");
+                                var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+                                // alert("before compare");
+                                if(selectedValue==arguments[0])
+                                {
+                                    //alert("ok");
+                                    document.getElementById("rate").value=parseInt(arguments[1]);
+                                    document.getElementById("tax").value=parseFloat(arguments[2]);
+                                    price=arguments[1];
+                                    tax=arguments[2];
+                                }
+                            }
+                            function updateQuantity()
+                            {
+                                var quantity=document.getElementById("quantity").value;
+                                var totalPrice=quantity*price;
+                                var taxx=tax/100;
+                                totalPrice=totalPrice+(totalPrice*taxx);
+                                document.getElementById("total").value=totalPrice;
+                                document.getElementById("net").value=totalPrice;
+                            }
+                        </script>
                     </div>
                 </div>
                 <!-- END TABLE HOVER -->

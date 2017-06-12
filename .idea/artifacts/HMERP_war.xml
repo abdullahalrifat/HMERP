@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="HMERP:war">
+    <output-path>$PROJECT_DIR$/out/artifacts/HMERP_war</output-path>
+    <root id="archive" name="HMERP_war.war">
+      <element id="artifact" artifact-name="HMERP:war exploded" />
+    </root>
+  </artifact>
+</component>

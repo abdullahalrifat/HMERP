@@ -30,7 +30,7 @@
 </head>
 
 <body>
-<!-- WRAPPER -->
+<!-- WRAPPERs-->
 <div id="wrapper">
     <!-- SIDEBAR -->
     <div class="sidebar">

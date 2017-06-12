@@ -429,12 +429,12 @@ public class Home
 
             List<SalesListBean>salesList = sldet.getListSales();
 
-            List<ProductListBean> proList = prdet.getListProducts();
+
             //checking if reading the databse
-            //System.out.println(projectList.get(0).getProjectName());
+            //System.out.println(salesList.get(0).getProduct());
 
             model.addObject("salesList",salesList);
-            model.addObject("productList",proList);
+
 
         }
         catch(Exception e)
@@ -450,6 +450,15 @@ public class Home
         try
         {
             model = new ModelAndView("AddSales","register-Sales-entity",new SalesListBean());
+            List<ProductListBean> proList = prdet.getListProducts();
+            List<CustomersListBean> customerList = cumdet.getListofCustomers();
+
+
+            //checking if reading the databse
+            //System.out.println(projectList.get(0).getProjectName());
+
+            model.addObject("customerList",customerList);
+            model.addObject("productList",proList);
         }
         catch(Exception e)
         {

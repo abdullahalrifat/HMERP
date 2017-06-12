@@ -28,11 +28,11 @@ public class jdbcPurchaseDAO extends JdbcDaoSupport implements PurchaseDAO
 
     @Override
     public void insertPurchase(PurchaseListBean purchaseListBean) {
-        String sql="INSERT INTO Purchase "+"(Id,Date,BillNo,Product,Supplier,Tax,Quantity,Rate,TotalAmount,Paymode) VALUES (?, ?, ?, ?,?,?,?,?,?,?)";
+        String sql="INSERT INTO Purchase "+"(Id,Date,BillNo,Product,Supplier,Tax,Quantity,Rate,TotalAmount,Net,Paymode) VALUES (?, ?, ?, ?,?,?,?,?,?,?,?)";
 
         try
         {
-            jdbcTemplate.update(sql,purchaseListBean.getId(),purchaseListBean.getDate(),purchaseListBean.getBillNo(),purchaseListBean.getProduct(),purchaseListBean.getSupplier(),purchaseListBean.getTax(),purchaseListBean.getQuantity(),purchaseListBean.getRate(),purchaseListBean.getTotalAmount(),purchaseListBean.getPayMode());
+            jdbcTemplate.update(sql,purchaseListBean.getId(),purchaseListBean.getDate(),purchaseListBean.getBillNo(),purchaseListBean.getProduct(),purchaseListBean.getSupplier(),purchaseListBean.getTax(),purchaseListBean.getQuantity(),purchaseListBean.getRate(),purchaseListBean.getTotalAmount(),purchaseListBean.getNet(),purchaseListBean.getPayMode());
 
         }catch (Exception e) {
             e.printStackTrace();
@@ -56,6 +56,7 @@ public class jdbcPurchaseDAO extends JdbcDaoSupport implements PurchaseDAO
                 purchaseListBean.setQuantity(resultSet.getInt("Quantity"));
                 purchaseListBean.setRate(resultSet.getInt("Rate"));
                 purchaseListBean.setTotalAmount(resultSet.getInt("TotalAmount"));
+                purchaseListBean.setNet(resultSet.getDouble("Net"));
                 purchaseListBean.setPayMode(resultSet.getString("Paymode"));
 
                 return purchaseListBean;
@@ -67,8 +68,8 @@ public class jdbcPurchaseDAO extends JdbcDaoSupport implements PurchaseDAO
     @Override
     public void updatePurchase(PurchaseListBean purchaseListBean) {
         //System.out.println(purchaseListBean.getSupplier());
-        String sql = "UPDATE Purchase set Date = ?, BillNo = ?, Product = ?, Supplier = ?, Tax = ?, Quantity = ?, Rate = ?, TotalAmount = ?, Paymode = ? where Id = ?";
-        jdbcTemplate.update(sql,purchaseListBean.getDate(),purchaseListBean.getBillNo(),purchaseListBean.getProduct(),purchaseListBean.getSupplier(),purchaseListBean.getTax(),purchaseListBean.getQuantity(),purchaseListBean.getRate(),purchaseListBean.getTotalAmount(),purchaseListBean.getPayMode(),purchaseListBean.getId());
+        String sql = "UPDATE Purchase set Date = ?, BillNo = ?, Product = ?, Supplier = ?, Tax = ?, Quantity = ?, Rate = ?, TotalAmount = ?, Net = ?, Paymode = ? where Id = ?";
+        jdbcTemplate.update(sql,purchaseListBean.getDate(),purchaseListBean.getBillNo(),purchaseListBean.getProduct(),purchaseListBean.getSupplier(),purchaseListBean.getTax(),purchaseListBean.getQuantity(),purchaseListBean.getRate(),purchaseListBean.getTotalAmount(),purchaseListBean.getNet(),purchaseListBean.getPayMode(),purchaseListBean.getId());
     }
 
     @Override

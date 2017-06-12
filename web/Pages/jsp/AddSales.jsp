@@ -46,6 +46,7 @@
                     <li><a href="ProductList.html" class=""><i class="lnr lnr-employee"></i> <span>Products</span></a></li>
                     <li><a href="PurchaseList.html" class="active"><i class="lnr lnr-employee"></i> <span>Products</span></a></li>
                     <li><a href="SalesList.html" class=""><i class="lnr lnr-employee"></i> <span>Products</span></a></li>
+
                     <li><a href="employees.html" class=""><i class="lnr lnr-employee"></i> <span>Employees</span></a></li>
                     <li><a href="projects.html" class=""><i class="lnr lnr-projects"></i> <span>Projects</span></a></li>
                     <li><a href="elements.html" class=""><i class="lnr lnr-code"></i> <span>Elements</span></a></li>
@@ -134,7 +135,7 @@
         <div class="main-content">
             <div class="container-fluid">
                 <h3 class="page-title">Tables</h3>
-                <a class="btn" href="AddProducts.html"><img src="/resources/AdminPanel/template/assets/img/add.png" class="img-circle" alt="Avatar"></a>
+                <a class="btn" href="AddSales.html"><img src="/resources/AdminPanel/template/assets/img/add.png" class="img-circle" alt="Avatar"></a>
                 <!-- TABLE HOVER -->
                 <div class="panel">
                     <div class="panel-heading">
@@ -144,11 +145,62 @@
                         <!--body goes here-->
                         <div class="form">
                             <div class="form-style-5">
-                                <form method="POST" commandName="register-Products-entity" action="/add-products.html">
+                                <form method="POST" commandName="register-Sales-entity" action="/add-sales.html">
                                     <fieldset>
-                                        <input type="text" name="name" placeholder="Product *">
-                                        <input type="text" name="price" placeholder="Price *">
-                                        <input type="text" name="tax" placeholder="Tax *">
+
+                                        <input type="datetime" id="date" name="date" placeholder="Date *">
+                                        <script>
+                                            var today = new Date();
+                                            var dd = today.getDate();
+                                            var mm = today.getMonth()+1; //January is 0!
+                                            var yyyy = today.getFullYear();
+                                            if(dd<10){
+                                                dd='0'+dd;
+                                            }
+                                            if(mm<10){
+                                                mm='0'+mm;
+                                            }
+                                            var today =dd+'/'+mm+'/'+yyyy;
+                                            alert(today);
+                                            document.getElementById("date").value = today;
+                                        </script>
+                                        <input type="text" name="billNo" placeholder="Bill No *">
+                                        <label for="product">Products:</label>
+                                        <select id="product" onchange="update()" name="product">
+                                        </select>
+                                        <c:forEach  items="${productList}" var="listValue">
+                                            <script>
+                                                //alert('${listValue.getName()}');
+                                                var select=document.getElementById('product');
+                                                var opt = document.createElement('option');
+                                                opt.value = '${listValue.getName()}';
+                                                opt.innerHTML = '${listValue.getName()}';
+                                                select.appendChild(opt);
+                                            </script>
+                                        </c:forEach>
+                                        <input type="text" id="price" name="price" placeholder="Price *">
+                                        <input type="text" id="tax" name="tax" placeholder="Tax *">
+                                        <label for="customer">Customers :</label>
+                                        <select id="customer" name="customer">
+                                        </select>
+                                        <c:forEach  items="${customerList}" var="listValue">
+                                            <script>
+                                                //alert('${listValue.getName()}');
+                                                var select=document.getElementById('customer');
+                                                var opt = document.createElement('option');
+                                                opt.value = '${listValue.getName()}';
+                                                opt.innerHTML = '${listValue.getName()}';
+                                                select.appendChild(opt);
+                                            </script>
+                                        </c:forEach>
+                                        <input type="number" id="quantity" onchange="updateQuantity()" name="quantity" placeholder="Quantity *">
+
+                                        <input type="number" id="total" name="total" placeholder="Amount To Collect *">
+                                        <input type="number" name="net" id="net" placeholder="AmountReceived *">
+                                        <select id="payMode" name="payMode">
+                                            <option value="HandCash">Hand Cash</option>
+                                            <option value="Bank">Bank</option>
+                                        </select>
                                     </fieldset>
 
                                     <input type="submit" value="Apply" />
@@ -156,6 +208,41 @@
                             </div>
 
                         </div>
+
+                        <script>
+                            var price;
+                            var tax;
+                            function update()
+                                {
+                                        //alert(selectedValue);
+                                        <c:forEach  items="${productList}" var="listValue">
+                                            compare('${listValue.getName()}','${listValue.getPrice()}','${listValue.getTax()}');
+                                         </c:forEach>
+                                }
+                                function compare()
+                                {
+                                    var selectBox = document.getElementById("product");
+                                    var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+                                   // alert("before compare");
+                                    if(selectedValue==arguments[0])
+                                    {
+                                        //alert("ok");
+                                        document.getElementById("price").value=parseInt(arguments[1]);
+                                        document.getElementById("tax").value=parseFloat(arguments[2]);
+                                        price=arguments[1];
+                                        tax=arguments[2];
+                                    }
+                                }
+                                function updateQuantity()
+                                {
+                                    var quantity=document.getElementById("quantity").value;
+                                    var totalPrice=quantity*price;
+                                    var taxx=tax/100;
+                                    totalPrice=totalPrice+(totalPrice*taxx);
+                                    document.getElementById("total").value=totalPrice;
+                                    document.getElementById("net").value=totalPrice;
+                                }
+                        </script>
                         <!--Body Ends Here-->
                     </div>
                 </div>

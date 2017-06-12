@@ -33,7 +33,7 @@ public class AddPurchase {
         {
             if(pruchaseListBean.getProduct()!=""&&pruchaseListBean.getBillNo()!=0&&pruchaseListBean.getTotalAmount()!=0)
             {
-                cd.registerPurchase(pruchaseListBean.getDate(),pruchaseListBean.getBillNo(),pruchaseListBean.getProduct(),pruchaseListBean.getSupplier(),pruchaseListBean.getTax(),pruchaseListBean.getQuantity(),pruchaseListBean.getRate(),pruchaseListBean.getTotalAmount(),pruchaseListBean.getPayMode());
+                cd.registerPurchase(pruchaseListBean.getDate(),pruchaseListBean.getBillNo(),pruchaseListBean.getProduct(),pruchaseListBean.getSupplier(),pruchaseListBean.getTax(),pruchaseListBean.getQuantity(),pruchaseListBean.getRate(),pruchaseListBean.getTotalAmount(),pruchaseListBean.getPayMode(),pruchaseListBean.getNet());
                 model = new ModelAndView("Home");
             }
             else

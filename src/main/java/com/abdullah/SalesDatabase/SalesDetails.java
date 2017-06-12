@@ -20,10 +20,10 @@ public class SalesDetails
         List<SalesListBean> listSales=salesDAO.ListOfSales();
         return listSales;
     }
-    public void registerSales(String date, String product, String customer, int quantity, String payMode) {
+    public void registerSales(int billNo, String date, String product, int price, String customer, int quantity, int total, Double tax, Double net, String payMode) {
         List<SalesListBean> listSales=salesDAO.ListOfSales();
         int size=listSales.size();
-        SalesListBean salesListBean=new SalesListBean(size+1,date,product,customer,quantity,payMode);
+        SalesListBean salesListBean=new SalesListBean(size+1,billNo,date,product,price,customer,quantity,total,tax,net,payMode);
         salesDAO.insertSales(salesListBean);
     }
     public void updateSales(SalesListBean salesListBean) {

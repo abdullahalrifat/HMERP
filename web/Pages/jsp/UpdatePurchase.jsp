@@ -164,11 +164,11 @@
                                             }
                                             var today =dd+'/'+mm+'/'+yyyy;
                                             alert(today);
-                                            document.getElementById("date").value = today;
+                                            document.getElementById("pdate").value = today;
                                         </script>
-                                        <input type="text" id="pbill" name="billNo" placeholder="Bill No *">
+                                        <input type="text" name="billNo" id="pbill" placeholder="Bill No *">
                                         <label for="pproduct">Products:</label>
-                                        <select id="pproduct" name="product">
+                                        <select id="pproduct" onchange="update();updateQuantity()" name="product">
                                         </select>
                                         <c:forEach  items="${productList}" var="listValue">
                                             <script>
@@ -188,10 +188,11 @@
 
                                             <option value="NOKIA">NOKIA</option>
                                         </select>
-                                        <input type="text" id="ptax" name="tax" placeholder="Tax *">
-                                        <input type="text" id="pquantity" name="quantity" placeholder="Quantity *">
-                                        <input type="text" id = "prate" name="rate" placeholder="Rate *">
-                                        <input type="text" id="ptotal" name="totalAmount" placeholder="Total Amount">
+                                        <input type="number" name="tax" id="ptax" onchange="updateQuantity()" placeholder="Tax *">
+                                        <input type="number" name="quantity" id="pquantity" onchange="updateQuantity()" placeholder="Quantity *">
+                                        <input type="number" name="rate" id="prate" onchange="updateQuantity()" placeholder="Rate *">
+                                        <input type="number" name="totalAmount" id="ptotal" onchange="updateQuantity()" placeholder="Total Amount">
+                                        <input type="number" name="net" id="pnet" placeholder="Net">
                                         <label for="ppayMode">Country:</label>
                                         <select id="ppayMode" name="payMode">
                                             <option value="HandCash">Hand Cash</option>
@@ -205,7 +206,41 @@
                             </div>
 
                         </div>
-
+                        <script>
+                            var price;
+                            var tax;
+                            function update()
+                            {
+                                //alert(selectedValue);
+                                <c:forEach  items="${productList}" var="listValue">
+                                compare('${listValue.getName()}','${listValue.getPrice()}','${listValue.getTax()}');
+                                </c:forEach>
+                            }
+                            function compare()
+                            {
+                                var selectBox = document.getElementById("pproduct");
+                                var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+                                // alert("before compare");
+                                if(selectedValue==arguments[0])
+                                {
+                                    //alert("ok");
+                                    document.getElementById("prate").value=parseInt(arguments[1]);
+                                    document.getElementById("ptax").value=parseFloat(arguments[2]);
+                                    price=arguments[1];
+                                    tax=arguments[2];
+                                }
+                            }
+                            function updateQuantity()
+                            {
+                                var quantity=document.getElementById("pquantity").value;
+                                var price=document.getElementById("prate").value;
+                                var tax=document.getElementById("ptax").value;
+                                var totalPrice=quantity*price;
+                                var taxx=totalPrice+(totalPrice*(tax/100));
+                                document.getElementById("ptotal").value=totalPrice;
+                                document.getElementById("pnet").value=taxx;
+                            }
+                        </script>
 
                         <!--Body Ends Here-->
                         <c:forEach  items="${purchaselist}" var="listValue">
@@ -220,6 +255,7 @@
                                 document.getElementById("pquantity").value=parseInt('${listValue.getQuantity()}');
                                 document.getElementById("prate").value=parseInt('${listValue.getRate()}');
                                 document.getElementById("ptotal").value=parseInt('${listValue.getTotalAmount()}');
+                                document.getElementById("pnet").value=parseInt('${listValue.getNet()}');
                                 document.getElementById("ppayMode").value='${listValue.getPayMode()}';
                             </script>
                         </c:forEach>

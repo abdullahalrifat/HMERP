@@ -15,11 +15,12 @@ public class PurchaseListBean
     private int Rate;
     private int TotalAmount;
     private String PayMode;
+    private Double Net;
 
     public PurchaseListBean() {
     }
 
-    public PurchaseListBean(String date, int billNo, String product, String supplier, Double tax, int quantity, int rate, int totalAmount, String payMode) {
+    public PurchaseListBean(String date, int billNo, String product, String supplier, Double tax, int quantity, int rate, int totalAmount, String payMode,Double net) {
         Date = date;
         BillNo = billNo;
         Product = product;
@@ -29,9 +30,10 @@ public class PurchaseListBean
         Rate = rate;
         TotalAmount = totalAmount;
         PayMode = payMode;
+        Net=net;
     }
 
-    public PurchaseListBean(int id, String date, int billNo, String product, String supplier, Double tax, int quantity, int rate, int totalAmount, String payMode) {
+    public PurchaseListBean(int id, String date, int billNo, String product, String supplier, Double tax, int quantity, int rate, int totalAmount, String payMode,Double net) {
         this.id = id;
         Date = date;
         BillNo = billNo;
@@ -42,6 +44,7 @@ public class PurchaseListBean
         Rate = rate;
         TotalAmount = totalAmount;
         PayMode = payMode;
+        Net=net;
     }
 
     public int getId() {
@@ -122,5 +125,13 @@ public class PurchaseListBean
 
     public void setPayMode(String payMode) {
         PayMode = payMode;
+    }
+
+    public Double getNet() {
+        return Net;
+    }
+
+    public void setNet(Double net) {
+        Net = net;
     }
 }

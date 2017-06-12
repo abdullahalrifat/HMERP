@@ -27,11 +27,11 @@ public class jdbcSalesDAO extends JdbcDaoSupport implements SalesDAO
 
     @Override
     public void insertSales(SalesListBean salesListBean) {
-        String sql="INSERT INTO Sale "+"(Id,Date,Product,Customer,Quantity,Paymode) VALUES (?, ?, ?, ?,?,?)";
+        String sql="INSERT INTO Sale "+"(Id,BillNo,Date,Product,Price,Customer,Quantity,Total,Tax,Net,PayMode) VALUES (?, ?, ?, ?,?,?,?,?,?,?,?)";
 
         try
         {
-            jdbcTemplate.update(sql,salesListBean.getId(),salesListBean.getDate(),salesListBean.getProduct(),salesListBean.getCustomer(),salesListBean.getQuantity(),salesListBean.getPayMode());
+            jdbcTemplate.update(sql,salesListBean.getId(),salesListBean.getBillNo(),salesListBean.getDate(),salesListBean.getProduct(),salesListBean.getPrice(),salesListBean.getCustomer(),salesListBean.getQuantity(),salesListBean.getTotal(),salesListBean.getTax(),salesListBean.getNet(),salesListBean.getPayMode());
 
         }catch (Exception e) {
             e.printStackTrace();
@@ -47,11 +47,16 @@ public class jdbcSalesDAO extends JdbcDaoSupport implements SalesDAO
             {
                 SalesListBean  salesListBean=new SalesListBean ();
                 salesListBean.setId(resultSet.getInt("Id"));
+                salesListBean.setBillNo(resultSet.getInt("BillNo"));
                 salesListBean.setDate(resultSet.getString("Date"));
                 salesListBean.setProduct(resultSet.getString("Product"));
+                salesListBean.setPrice(resultSet.getInt("Price"));
                 salesListBean.setCustomer(resultSet.getString("Customer"));
                 salesListBean.setQuantity(resultSet.getInt("Quantity"));
-                salesListBean.setPayMode(resultSet.getString("Paymode"));
+                salesListBean.setTotal(resultSet.getInt("Total"));
+                salesListBean.setTax(resultSet.getDouble("Tax"));
+                salesListBean.setNet(resultSet.getDouble("Net"));
+                salesListBean.setPayMode(resultSet.getString("PayMode"));
 
                 return salesListBean;
             }
@@ -61,8 +66,8 @@ public class jdbcSalesDAO extends JdbcDaoSupport implements SalesDAO
 
     @Override
     public void updateSales(SalesListBean salesListBean) {
-        String sql = "UPDATE Sale set Date = ?, Product = ?, Customer = ?, Quantity = ?, Paymode = ? where Id = ?";
-        jdbcTemplate.update(sql,salesListBean.getDate(),salesListBean.getProduct(),salesListBean.getCustomer(),salesListBean.getQuantity(),salesListBean.getPayMode(),salesListBean.getId());
+        String sql = "UPDATE Sale set BillNo = ?, Date = ?, Product = ?,Price = ?, Customer = ?, Quantity = ?, Total = ?, Tax = ?, Net = ?, Paymode = ? where Id = ?";
+        jdbcTemplate.update(sql, salesListBean.getId(), salesListBean.getBillNo(), salesListBean.getDate(), salesListBean.getProduct(), salesListBean.getPrice(), salesListBean.getCustomer(), salesListBean.getQuantity(), salesListBean.getTotal(), salesListBean.getTax(), salesListBean.getNet(), salesListBean.getPayMode());
     }
 
     @Override

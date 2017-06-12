@@ -1,5 +1,9 @@
 package com.abdullah.Controller;
 
+import com.abdullah.CustomerListDataBase.CustomerDetails;
+import com.abdullah.Customers.CustomersListBean;
+import com.abdullah.Product.ProductListBean;
+import com.abdullah.ProductDatabase.ProductDetails;
 import com.abdullah.Sales.SalesListBean;
 import com.abdullah.SalesDatabase.SalesDetails;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +23,10 @@ import java.util.List;
 public class AddSale {
     @Autowired
     SalesDetails cd;
+    @Autowired
+    ProductDetails prdet;
+    @Autowired
+    CustomerDetails customer;
     @RequestMapping(value="/add-sales")
     public ModelAndView processSalesRegister(@ModelAttribute SalesListBean salesListBean)
     {
@@ -28,7 +36,8 @@ public class AddSale {
         {
             if(salesListBean.getProduct()!=""&&salesListBean.getCustomer()!=""&&salesListBean.getQuantity()!=0&&salesListBean.getPayMode()!="")
             {
-                cd.registerSales(salesListBean.getDate(),salesListBean.getProduct(),salesListBean.getCustomer(),salesListBean.getQuantity(),salesListBean.getPayMode());
+                System.out.println(salesListBean.getNet());
+                cd.registerSales(salesListBean.getBillNo(), salesListBean.getDate(), salesListBean.getProduct(), salesListBean.getPrice(), salesListBean.getCustomer(), salesListBean.getQuantity(), salesListBean.getTotal(), salesListBean.getTax(), salesListBean.getNet(), salesListBean.getPayMode());
                 model = new ModelAndView("Home");
             }
             else
@@ -56,8 +65,12 @@ public class AddSale {
             SalesListBean clb=list.get(userId-1);
             l.add(clb);
             //checking if reading the databse
-           // System.out.println(l.get(0).getName());
+           //System.out.println(l.get(0).getProduct());
             model.addObject("saleslist",l);
+            List<ProductListBean> proList = prdet.getListProducts();
+            model.addObject("productList",proList);
+            List<CustomersListBean> cust=customer.getListofCustomers();
+            model.addObject("customerList",cust);
         }
         catch(Exception e)
         {

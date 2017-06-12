@@ -151,10 +151,11 @@
                             <tr>
                                 <!-- Adding menu for the employee table -->
                                 <th>#</th>
+                                <th>BillNo</th>
                                 <th>Date</th>
                                 <th>Product</th>
-                                <th>Customer</th>
                                 <th>Price</th>
+                                <th>Customer</th>
                                 <th>Quantity</th>
                                 <th>Total</th>
                                 <th>Tax</th>
@@ -163,13 +164,15 @@
                             </thead>
                             <tbody>
                             <!-- adding all employees  -->
-                            <c:forEach var = "listValue" items = "${models}">
+                            <c:forEach var = "listValue" items = "${salesList}">
 
                                 <tr>
                                     <td>
                                         <c:out value="${listValue.getId()}"/>
                                     </td>
-
+                                    <td>
+                                        <c:out value="${listValue.getBillNo()}"/>
+                                    </td>
                                     <td>
                                         <c:out value="${listValue.getDate()}"/>
                                     </td>
@@ -177,29 +180,35 @@
                                     <td>
                                         <c:out value="${listValue.getProduct()}"/>
                                     </td>
+
                                     <td>
-                                        <c:out value="${listValue.getSupplier()}"/>
+                                        <c:out value="${listValue.getPrice()}"/>
                                     </td>
 
                                     <td>
-                                        <c:out value="${listValue.getRate()}"/>
+                                        <c:out value="${listValue.getCustomer()}"/>
                                     </td>
+
                                     <td>
                                         <c:out value="${listValue.getQuantity()}"/>
                                     </td>
+
                                     <td>
-                                        <c:out value="${listValue.getTotalAmount()}"/>
+                                        <c:out value="${listValue.getTotal()}"/>
                                     </td>
+
                                     <td>
                                         <c:out value="${listValue.getTax()}"/>
                                     </td>
-                                    <td>
-                                        <c:out value="${listValue.getTotalAmount()}*(100/${listValue.getTax()})"/>
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-warning btn-xs" href="<c:out value='/update-purchase.html?userId=${listValue.getId()}' />">Edit</a>
 
-                                        <a class="btn btn-xs btn-danger" href="<c:out value='/delete-purchase-row.html?userId=${listValue.getId()}' />" onclick="return confirm('Are you sure to delete this?')"> Delete</a>
+                                    <td>
+                                        <c:out value="${listValue.getNet()}"/>
+                                    </td>
+
+                                    <td>
+                                        <a class="btn btn-warning btn-xs" href="<c:out value='/update-sales.html?userId=${listValue.getId()}' />">Edit</a>
+
+                                        <a class="btn btn-xs btn-danger" href="<c:out value='/delete-sales-row.html?userId=${listValue.getId()}' />" onclick="return confirm('Are you sure to delete this?')"> Delete</a>
                                         <!--<a class="btn btn-success btn-xs"  href="http://demo.swot.co.in/accounting/public/customers/transactions/1"><span class="fa fa-files-o" aria-hidden="true"></span> View Transactions</a> -->
                                     </td>
                                 </tr>

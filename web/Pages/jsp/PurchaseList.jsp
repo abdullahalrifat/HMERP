@@ -164,7 +164,6 @@
                                 <tbody>
                                 <!-- adding all employees  -->
                                 <c:forEach var = "listValue" items = "${purchaseList}">
-
                                     <tr>
                                         <td>
                                             <c:out value="${listValue.getId()}"/>
@@ -194,7 +193,7 @@
                                             <c:out value="${listValue.getTax()}"/>
                                         </td>
                                         <td>
-                                            <c:out value="${listValue.getTotalAmount()}*(100/${listValue.getTax()})"/>
+                                            <c:out value="${listValue.getNet()}"/>
                                         </td>
                                         <td>
                                             <a class="btn btn-warning btn-xs" href="<c:out value='/update-purchase.html?userId=${listValue.getId()}' />">Edit</a>
@@ -206,8 +205,12 @@
 
                                 </c:forEach>
 
+                                        <script>
+                                            function load()
+                                            {
 
-
+                                            }
+                                        </script>
                                 </tbody>
                             </table>
 

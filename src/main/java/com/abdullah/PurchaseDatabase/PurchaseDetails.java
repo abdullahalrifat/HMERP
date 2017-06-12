@@ -20,10 +20,10 @@ public class PurchaseDetails
         List<PurchaseListBean> listParches=purchaseDAO.ListOfPurchase();
         return listParches;
     }
-    public void registerPurchase(String date, int billNo, String product, String supplier, Double tax, int quantity, int rate, int totalAmount, String payMode) {
+    public void registerPurchase(String date, int billNo, String product, String supplier, Double tax, int quantity, int rate, int totalAmount, String payMode,Double Net) {
         List<PurchaseListBean> listParchase=purchaseDAO.ListOfPurchase();
         int size=listParchase.size();
-        PurchaseListBean purchaseListBean=new PurchaseListBean(size+1,date,billNo,product,supplier,tax,quantity,rate,totalAmount,payMode);
+        PurchaseListBean purchaseListBean=new PurchaseListBean(size+1,date,billNo,product,supplier,tax,quantity,rate,totalAmount,payMode,Net);
         purchaseDAO.insertPurchase(purchaseListBean);
     }
     public void updatePurchase(PurchaseListBean purchaseListBean) {
