@@ -48,6 +48,9 @@
                     <li><a href="index.html" class=""><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
                     <li><a href="CustomersList.html" class=""><i class="lnr lnr-employee"></i> <span>Customers</span></a></li>
                     <li><a href="ProductList.html" class="active"><i class="lnr lnr-employee"></i> <span>Products</span></a></li>
+                    <li><a href="PurchaseList.html" class="active"><i class="lnr lnr-employee"></i> <span>Purchase</span></a></li>
+                    <li><a href="SalesList.html" class=""><i class="lnr lnr-employee"></i> <span>Sales</span></a></li>
+
                     <li><a href="employees.html" class=""><i class="lnr lnr-employee"></i> <span>Employees</span></a></li>
                     <li><a href="projects.html" class=""><i class="lnr lnr-projects"></i> <span>Projects</span></a></li>
                     <li><a href="elements.html" class=""><i class="lnr lnr-code"></i> <span>Elements</span></a></li>
@@ -140,7 +143,7 @@
                 <!-- TABLE HOVER -->
                 <div class="panel" id="UpdateModal">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Add Purchase</h3>
+                        <h3 class="panel-title">Update Purchase</h3>
                     </div>
                     <div class="panel-body" >
                         <!--body goes here-->

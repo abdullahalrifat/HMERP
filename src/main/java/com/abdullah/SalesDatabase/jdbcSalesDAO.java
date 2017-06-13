@@ -66,8 +66,9 @@ public class jdbcSalesDAO extends JdbcDaoSupport implements SalesDAO
 
     @Override
     public void updateSales(SalesListBean salesListBean) {
-        String sql = "UPDATE Sale set BillNo = ?, Date = ?, Product = ?,Price = ?, Customer = ?, Quantity = ?, Total = ?, Tax = ?, Net = ?, Paymode = ? where Id = ?";
-        jdbcTemplate.update(sql, salesListBean.getId(), salesListBean.getBillNo(), salesListBean.getDate(), salesListBean.getProduct(), salesListBean.getPrice(), salesListBean.getCustomer(), salesListBean.getQuantity(), salesListBean.getTotal(), salesListBean.getTax(), salesListBean.getNet(), salesListBean.getPayMode());
+        String sql = "UPDATE Sale set BillNo = ?, Date = ?, Product = ?, Price = ?, Customer = ?, Quantity = ?, Total = ?, Tax = ?, Net = ?, PayMode = ? where Id = ?";
+        System.out.println(salesListBean.getBillNo());
+        jdbcTemplate.update(sql, salesListBean.getBillNo(), salesListBean.getDate(), salesListBean.getProduct(), salesListBean.getPrice(), salesListBean.getCustomer(), salesListBean.getQuantity(), salesListBean.getTotal(), salesListBean.getTax(), salesListBean.getNet(), salesListBean.getPayMode(),salesListBean.getId());
     }
 
     @Override

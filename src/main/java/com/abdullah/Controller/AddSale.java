@@ -89,6 +89,7 @@ public class AddSale {
         {
             if(salesListBean.getProduct()!=""&&salesListBean.getCustomer()!=""&&salesListBean.getQuantity()!=0&&salesListBean.getPayMode()!="")
             {
+                System.out.println(salesListBean.getBillNo());
                 cd.updateSales(salesListBean);
                 model = new ModelAndView("Home");
             }

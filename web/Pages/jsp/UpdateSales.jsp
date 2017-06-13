@@ -48,6 +48,9 @@
                     <li><a href="index.html" class=""><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
                     <li><a href="CustomersList.html" class=""><i class="lnr lnr-employee"></i> <span>Customers</span></a></li>
                     <li><a href="ProductList.html" class="active"><i class="lnr lnr-employee"></i> <span>Products</span></a></li>
+                    <li><a href="PurchaseList.html" class=""><i class="lnr lnr-employee"></i> <span>Purchase</span></a></li>
+                    <li><a href="SalesList.html" class="active"><i class="lnr lnr-employee"></i> <span>Sales</span></a></li>
+
                     <li><a href="employees.html" class=""><i class="lnr lnr-employee"></i> <span>Employees</span></a></li>
                     <li><a href="projects.html" class=""><i class="lnr lnr-projects"></i> <span>Projects</span></a></li>
                     <li><a href="elements.html" class=""><i class="lnr lnr-code"></i> <span>Elements</span></a></li>
@@ -140,7 +143,7 @@
                 <!-- TABLE HOVER -->
                 <div class="panel" id="UpdateModal">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Add Purchase</h3>
+                        <h3 class="panel-title">Update Sales</h3>
                     </div>
                     <div class="panel-body" >
                         <!--body goes here-->
@@ -166,9 +169,9 @@
                                             alert(today);
                                             document.getElementById("date").value = today;
                                         </script>
-                                        <input type="text" name="pbillNo" placeholder="Bill No *">
+                                        <input type="text" name="billNo" id="pbillNo" placeholder="Bill No *">
                                         <label for="pproduct">Products:</label>
-                                        <select id="pproduct" onchange="update()" name="product">
+                                        <select id="pproduct" onchange="update();updateQuantity()" name="product">
                                         </select>
                                         <c:forEach  items="${productList}" var="listValue">
                                             <script>
@@ -180,7 +183,7 @@
                                                 select.appendChild(opt);
                                             </script>
                                         </c:forEach>
-                                        <input type="text" id="pprice" name="price" placeholder="Price *">
+                                        <input type="text" id="pprice" name="price"  placeholder="Price *">
                                         <input type="text" id="ptax" name="tax" placeholder="Tax *">
                                         <label for="pcustomer">Customers :</label>
                                         <select id="pcustomer" name="customer">
@@ -251,12 +254,13 @@
                                 document.getElementById("pid").value=parseInt('${listValue.getId()}');
                                 document.getElementById("pdate").value='${listValue.getDate()}';
                                 document.getElementById("pbillNo").value=parseInt('${listValue.getBillNo()}');
+                                document.getElementById("pprice").value=parseInt('${listValue.getPrice()}');
                                 document.getElementById("pproduct").value='${listValue.getProduct()}';
                                 document.getElementById("pcustomer").value='${listValue.getCustomer()}';
                                 document.getElementById("ptax").value=parseFloat('${listValue.getTax()}');
                                 document.getElementById("pquantity").value=parseInt('${listValue.getQuantity()}');
                                 document.getElementById("ptotal").value=parseInt('${listValue.getTotal()}');
-                                document.getElementById("pnet").value=parseInt('${listValue.getNet()}');
+                                document.getElementById("pnet").value=parseFloat('${listValue.getNet()}');
                                 document.getElementById("ppayMode").value='${listValue.getPayMode()}';
                             </script>
                         </c:forEach>
