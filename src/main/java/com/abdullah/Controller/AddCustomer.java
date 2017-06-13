@@ -103,7 +103,7 @@ public class AddCustomer {
         {
                 //System.out.println(customersListBean.getName());
                 cd.DeleteCustomer(userId);
-                model = new ModelAndView("Customers");
+                model = new ModelAndView("CustomersList");
                 List<CustomersListBean> customerList = cd.getListofCustomers();
 
 
