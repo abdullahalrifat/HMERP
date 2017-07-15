@@ -18,6 +18,8 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+
+
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>appassembler-maven-plugin</artifactId>

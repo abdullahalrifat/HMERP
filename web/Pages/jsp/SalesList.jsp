@@ -150,6 +150,7 @@
                             <thead>
                             <tr>
                                 <!-- Adding menu for the employee table -->
+                                <th>Select</th>
                                 <th>#</th>
                                 <th>BillNo</th>
                                 <th>Date</th>
@@ -167,6 +168,7 @@
                             <c:forEach var = "listValue" items = "${salesList}">
 
                                 <tr>
+                                    <td><input type="checkbox" />&nbsp;</td>
                                     <td>
                                         <c:out value="${listValue.getId()}"/>
                                     </td>
@@ -219,7 +221,18 @@
 
                             </tbody>
                         </table>
+                        <script>
+                            checkboxes = document.getElementsByTagName("input");
+                            for (var i = 0; i < checkboxes.length; i++) {
+                                var checkbox = checkboxes[i];
+                                checkbox.onclick = function () {
+                                    var currentRow = this.parentNode.parentNode;
+                                    var secondColumn = currentRow.getElementsByTagName("td")[3];
 
+                                    alert("My text is: " + secondColumn.textContent);
+                                };
+                            }
+                        </script>
                     </div>
                 </div>
                 <!-- END TABLE HOVER -->

@@ -236,10 +236,10 @@
                                 function updateQuantity()
                                 {
                                     var quantity=document.getElementById("quantity").value;
-                                    var totalPrice=quantity*price;
+                                    var total=quantity*price;
                                     var taxx=tax/100;
-                                    totalPrice=totalPrice+(totalPrice*taxx);
-                                    document.getElementById("total").value=totalPrice;
+                                    var totalPrice=total+(total*taxx);
+                                    document.getElementById("total").value=total;
                                     document.getElementById("net").value=totalPrice;
                                 }
                         </script>
