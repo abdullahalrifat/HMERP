@@ -1,3 +1,4 @@
+<%@ page import="com.abdullah.Report.SalesReport.Generate" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
@@ -143,6 +144,7 @@
                 <div class="panel">
                     <div class="panel-heading">
                         <h3 class="panel-title">Sales</h3>
+                        <a class="btn" onclick="Generate(this)"><img src="/resources/AdminPanel/template/assets/img/report.png" class="img-circle" alt="Avatar"></a>
                     </div>
                     <div class="panel-body">
 
@@ -168,7 +170,7 @@
                             <c:forEach var = "listValue" items = "${salesList}">
 
                                 <tr>
-                                    <td><input type="checkbox" />&nbsp;</td>
+                                    <td><input type="checkbox" id="${listValue.getId()}" />&nbsp;</td>
                                     <td>
                                         <c:out value="${listValue.getId()}"/>
                                     </td>
@@ -225,12 +227,37 @@
                             checkboxes = document.getElementsByTagName("input");
                             for (var i = 0; i < checkboxes.length; i++) {
                                 var checkbox = checkboxes[i];
-                                checkbox.onclick = function () {
+                                    checkbox.onclick = function () {
                                     var currentRow = this.parentNode.parentNode;
                                     var secondColumn = currentRow.getElementsByTagName("td")[3];
-
-                                    alert("My text is: " + secondColumn.textContent);
+                                        //alert("My text is: " + secondColumn.textContent);
                                 };
+                            }
+                        </script>
+                        <script>
+                            function Generate(n) {
+                                var checkboxes = document.getElementsByTagName("input");
+                                <%
+                                    Generate generate=new Generate();
+                                    generate.Setclear();
+                                %>
+                                var ids=[];
+                                var form = document.createElement("form");
+                                form.method = "POST";
+                                form.action = "/PDF.html";
+                                for (var i = 0; i < checkboxes.length; i++) {
+                                    var checkbox = checkboxes[i];
+                                    if(checkbox.checked){
+                                        ids.push(i);
+                                        var element1 = document.createElement("input");
+                                        element1.value=i;
+                                        element1.name="index";
+                                        form.appendChild(element1);
+                                    }
+                                }
+                                document.body.appendChild(form);
+                                form.submit();
+
                             }
                         </script>
                     </div>

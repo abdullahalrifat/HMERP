@@ -50,6 +50,7 @@
         <hibernate.version>4.3.0.Final</hibernate.version>
     </properties>
 
+
     <dependencies>
         <!-- servlet dependencies -->
         <dependency>
@@ -74,6 +75,20 @@
             <version>1.2</version>
         </dependency>
 
+
+
+        <!-- json / ajax dependencies -->
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>1.9.7</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-core-asl</artifactId>
+            <version>1.9.7</version>
+        </dependency>
         <!-- Spring dependencies -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -123,6 +138,9 @@
             <version>1.2.16</version>
             <scope>runtime</scope>
         </dependency>
+
+
+
 
         <!-- configuracao jpa e driver -->
         <dependency>
