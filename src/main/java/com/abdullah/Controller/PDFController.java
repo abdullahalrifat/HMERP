@@ -51,7 +51,7 @@ public class PDFController {
         if(salesList!=null) {
             for (int i = 0; i < values.size(); i++) {
                 SalesListBean salesListBean = salesList.get(Integer.parseInt(values.get(i)) - 1);
-                generate.setData(salesListBean.getProduct(), salesListBean.getQuantity(), salesListBean.getPrice(), salesListBean.getTax(), salesListBean.getTotal());
+                generate.setData(salesListBean.getProduct(), salesListBean.getQuantity(), salesListBean.getPrice(), salesListBean.getTax(), salesListBean.getTotal(),salesListBean.getNet());
             }
         }
         else

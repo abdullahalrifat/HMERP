@@ -10,16 +10,19 @@ public class DataClass
     private int  UnitPrice;
     private Double Tax;
     private int  Total;
+    private Double NetTotal;
+
 
     public DataClass() {
     }
 
-    public DataClass(String product, int quantity, int unitPrice, Double tax, int total) {
+    public DataClass(String product, int quantity, int unitPrice, Double tax, int total,Double Nettotal) {
         Product = product;
         Quantity = quantity;
         UnitPrice = unitPrice;
         Tax = tax;
         Total = total;
+        NetTotal=Nettotal;
     }
 
     public String getProduct() {
@@ -61,4 +64,12 @@ public class DataClass
     public void setTotal(int total) {
         Total = total;
     }
+    public Double getNetTotal() {
+        return NetTotal;
+    }
+
+    public void setNetTotal(Double netTotal) {
+        NetTotal = netTotal;
+    }
+
 }
