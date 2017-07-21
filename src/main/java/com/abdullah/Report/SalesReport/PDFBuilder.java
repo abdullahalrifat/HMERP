@@ -21,8 +21,12 @@ public class PDFBuilder extends AbstractITextPdfView {
 
         // get data model which is passed by the Spring container
         List<DataClass> listBooks = (List<DataClass>) model.get("listBooks");
+        String clientName=(String) model.get("clientName");
+        String date=(String) model.get("date");
+        doc.add(new Paragraph("Rhivaan Group Of Industries"));
 
-        doc.add(new Paragraph("Recommended books for Spring framework"));
+        doc.add(new Paragraph("Date : "+date));
+        doc.add(new Paragraph("Client  : "+clientName));
 
         PdfPTable table = new PdfPTable(6);
         table.setWidthPercentage(100.0f);

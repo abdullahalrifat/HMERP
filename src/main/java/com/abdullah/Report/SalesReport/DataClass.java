@@ -25,6 +25,8 @@ public class DataClass
         NetTotal=Nettotal;
     }
 
+
+
     public String getProduct() {
         return Product;
     }
@@ -71,5 +73,6 @@ public class DataClass
     public void setNetTotal(Double netTotal) {
         NetTotal = netTotal;
     }
+
 
 }

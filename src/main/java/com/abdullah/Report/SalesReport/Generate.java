@@ -14,6 +14,7 @@ public class Generate
     {
         return data;
     }
+
     public void setData(String product, int quantity, int  unitPrice, Double  tax, int  total,Double netTotal)
     {
         if(product==null)
@@ -22,7 +23,7 @@ public class Generate
         }
         else
         {
-            System.out.println(product);
+           // System.out.println(product);
             DataClass dataClass=new DataClass(product,quantity,unitPrice,tax,total,netTotal);
             data.add(dataClass);
         }

@@ -29,11 +29,12 @@ public class PDFController {
     {
 
         setIndexData(values);
-        System.out.println(values.size());
+        //System.out.println(values.size());
         ModelAndView model= null;
         try
         {
             model = new ModelAndView("PDF");
+
         }
         catch(Exception e)
         {
@@ -60,14 +61,17 @@ public class PDFController {
         }
     }
 
-    @RequestMapping(value = "/downloadPDF", method = RequestMethod.GET)
-    public String downloadExcel(Model model, HttpServletRequest request) {
+    @RequestMapping(value = "/downloadPDF", method = RequestMethod.POST)
+    public String downloadExcel(@RequestParam String  clientName,@RequestParam String datepicker,Model model, HttpServletRequest request) {
 
 
          // / create some sample data
+       // System.out.println(datepicker+clientName);
+
 
         List<DataClass> listBooks = new ArrayList<DataClass>();
         Generate generate=new Generate();
+
         ArrayList<DataClass> arrayList=new ArrayList<>(generate.getData());
         for(int i=0;i<arrayList.size();i++)
         {
@@ -77,11 +81,13 @@ public class PDFController {
         XmlWebApplicationContext context=new XmlWebApplicationContext();
         context.setServletContext(request.getServletContext());
         context.refresh();
-        System.out.println("in download pdf");
+        //System.out.println("in download pdf");
         // create some sample data
 
 
-          model.addAttribute("listBooks",listBooks);
+        model.addAttribute("listBooks",listBooks);
+        model.addAttribute("clientName",clientName);
+        model.addAttribute("date",datepicker);
         return "pdfView";
 
     }

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: abdullah
@@ -12,12 +13,65 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Spring MVC PDF View Demo (iText)</title>
+    <title>PDF View </title>
+    <!-- Load jQuery from Google's CDN -->
+    <!-- Load jQuery UI CSS  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.css">
+    <link rel="stylesheet" href="/resources/OtherHardCodedDesigns/DatePicker.css" />
 </head>
-<body>
+<body onload="dateFormat()">
 <div align="center">
-    <h1>Spring MVC PDF View Demo (using iText library)</h1>
-    <h3><a href="/downloadPDF">Download PDF Document</a></h3>
+    <a href="index.html"><img src="/resources/AdminPanel/template/assets/img/logo-rhivaan.png" alt="Klorofil Logo" class="img-responsive logo"></a>
+    <h1>Rhivaan Group of Industries</h1>
+    <!-- TABLE HOVER -->
+    <div class="panel">
+        <div class="panel-heading">
+            <h3 class="panel-title">Generate PDF</h3>
+        </div>
+        <div class="panel-body">
+            <!--body goes here-->
+            <div class="form">
+                <div class="form-style-5">
+                    <form method="POST" commandName="register-customer-bill-entity" action="/downloadPDF">
+                        <fieldset>
+                            <label for="datepicker">Products:</label>
+                            <input type="text" id="datepicker" name="datepicker" placeholder="Date *">
+
+                            <label for="clientName">Products:</label>
+                            <input type="text" id="clientName" name="clientName" placeholder="Client Name">
+
+                        </fieldset>
+
+                        <input type="submit" value="Apply" />
+                    </form>
+                </div>
+
+            </div>
+            <script>
+            function dateFormat()
+            {
+                $( "#datepicker" ).datepicker({
+                dateFormat: 'dd/mm/yy',
+                changeMonth: true,//this option for allowing user to select month
+                changeYear: true//this option for allowing user to select from year range
+
+                });
+                //alert("on inner function");
+            }
+            </script>
+            <!--Body Ends Here-->
+        </div>
+    </div>
+    <!-- END TABLE HOVER -->
+
+    <!--
+        <h3><a href="/downloadPDF">Download PDF Document</a></h3>
+    -->
 </div>
+<!-- Javascript -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
 </body>
+
+
 </html>
