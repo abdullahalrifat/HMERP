@@ -88,6 +88,7 @@ public class PDFController {
         model.addAttribute("listBooks",listBooks);
         model.addAttribute("clientName",clientName);
         model.addAttribute("date",datepicker);
+        model.addAttribute("TotalBill",generate.getTotalBill());
         return "pdfView";
 
     }

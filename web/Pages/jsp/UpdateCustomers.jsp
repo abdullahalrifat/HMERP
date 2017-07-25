@@ -50,6 +50,8 @@
                     <li><a href="ProductList.html" class=""><i class="lnr lnr-employee"></i> <span>Products</span></a></li>
                     <li><a href="PurchaseList.html" class=""><i class="lnr lnr-employee"></i> <span>Purchase</span></a></li>
                     <li><a href="SalesList.html" class=""><i class="lnr lnr-employee"></i> <span>Sales</span></a></li>
+                    <li><a href="ProfitLoss.html" class=""><i class="lnr lnr-employee"></i> <span>Profit&Loss</span></a></li>
+
                     <li><a href="employees.html" class=""><i class="lnr lnr-employee"></i> <span>Employees</span></a></li>
                     <li><a href="projects.html" class=""><i class="lnr lnr-projects"></i> <span>Projects</span></a></li>
                     <li><a href="elements.html" class=""><i class="lnr lnr-code"></i> <span>Elements</span></a></li>
@@ -718,8 +720,7 @@
         <!-- END MAIN CONTENT -->
         <footer>
             <div class="container-fluid">
-                <p class="copyright">&copy; 2017. Developed by <a href="https://theicthub.com/">The ICT Hub Inc.</a></p>
-            </div>
+                <p class="copyright">&copy; 2017. Developed by <a href="http://wngit.com/">W & G Information Technology</a></p>            </div>
         </footer>
     </div>
     <!-- END MAIN -->

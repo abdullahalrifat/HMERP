@@ -34,7 +34,7 @@
                 <div class="form-style-5">
                     <form method="POST" commandName="register-customer-bill-entity" action="/downloadPDF">
                         <fieldset>
-                            <label for="datepicker">Products:</label>
+                            <label for="datepicker">Date :</label>
                             <input type="text" id="datepicker" name="datepicker" placeholder="Date *">
 
                             <label for="clientName">Products:</label>

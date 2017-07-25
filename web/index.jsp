@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: abdullah
@@ -10,16 +11,19 @@
 <head>
   <meta charset="UTF-8">
   <title>Login</title>
-
-
-
   <link rel="stylesheet" href="/resources/Login/css/style.css">
-
-
 </head>
 
-<body>
-<div class="login-page">
+<body background-repeat:no-repeat;
+
+      background-size:cover;
+      background="${pageContext.request.contextPath}/resources/AdminPanel/template/assets/img/background.png"
+>
+<a><img src="/resources/AdminPanel/template/assets/img/logo-rhivaan.png" top="35" left="170"  width="820" height="220"></a>
+
+<div class="login-page" >
+
+
   <div class="form">
     <form class="register-form" method="POST" commandName="register-entity" action="/login-register.html">
       <input name="fullname" type="text" placeholder="Full Name"/>

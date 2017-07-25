@@ -1,3 +1,11 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: abdullah
+  Date: 7/22/17
+  Time: 2:24 PM
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page import="com.abdullah.Report.SalesReport.Generate" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
@@ -17,7 +25,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <!-- CSS -->
-    <link rel="stylesheet" href="/resources/OtherHardCodedDesigns/InputFormDesign.css">
     <link rel="stylesheet" href="/resources/AdminPanel/template/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="/resources/AdminPanel/template/assets/css/vendor/icon-sets.css">
     <link rel="stylesheet" href="/resources/AdminPanel/template/assets/css/main.min.css">
@@ -29,12 +36,12 @@
     <link rel="apple-touch-icon" sizes="76x76" href="/resources/AdminPanel/template/assets/img/apple-icon.png">
     <link rel="icon" type="image/png" sizes="96x96" href="/resources/AdminPanel/template/assets/img/favicon.png">
     <!--JS
-    <script type="text/javascript" src="/resources/OtherHardCodedJS/updateCustomer.js"></script>
-        -->
+    <script src="/resources/OtherHardCodedJS/updateCustomer.js"></script>
+-->
 
 </head>
 
-<body >
+<body>
 <!-- WRAPPER -->
 <div id="wrapper">
     <!-- SIDEBAR -->
@@ -48,9 +55,9 @@
                     <li><a href="index.html" class=""><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
                     <li><a href="CustomersList.html" class=""><i class="lnr lnr-employee"></i> <span>Customers</span></a></li>
                     <li><a href="ProductList.html" class=""><i class="lnr lnr-employee"></i> <span>Products</span></a></li>
-                    <li><a href="PurchaseList.html" class="active"><i class="lnr lnr-employee"></i> <span>Purchase</span></a></li>
+                    <li><a href="PurchaseList.html" class=""><i class="lnr lnr-employee"></i> <span>Purchase</span></a></li>
                     <li><a href="SalesList.html" class=""><i class="lnr lnr-employee"></i> <span>Sales</span></a></li>
-                    <li><a href="ProfitLoss.html" class=""><i class="lnr lnr-employee"></i> <span>Profit&Loss</span></a></li>
+                    <li><a href="ProfitLoss.html" class="active"><i class="lnr lnr-employee"></i> <span>Profit&Loss</span></a></li>
 
                     <li><a href="employees.html" class=""><i class="lnr lnr-employee"></i> <span>Employees</span></a></li>
                     <li><a href="projects.html" class=""><i class="lnr lnr-projects"></i> <span>Projects</span></a></li>
@@ -140,135 +147,62 @@
         <div class="main-content">
             <div class="container-fluid">
                 <h3 class="page-title">Tables</h3>
-                <a class="btn" href="AddPurchase.html"><img src="/resources/AdminPanel/template/assets/img/add.png" class="img-circle" alt="Avatar"></a>
-                <!-- TABLE HOVER -->
-                <div class="panel" id="UpdateModal">
+                 <!-- TABLE HOVER -->
+                <div class="panel">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Update Purchase</h3>
+                        <h3 class="panel-title">Profit & Loss</h3>
+                        <textarea id="incexp" readonly="readonly" style="resize:none" ></textarea>
                     </div>
-                    <div class="panel-body" >
-                        <!--body goes here-->
-                        <div class="form">
-                            <div class="form-style-5">
-                                <form  id ="CustomerForm" method="POST" commandName="update-Purchase-entity" action="/update-purchase-row.html">
+                    <div class="panel-body">
 
-                                    <fieldset>
-                                        <input type="hidden" name="Id" id="pid" type="number" placeholder="ID">
-                                        <input type="datetime" id="pdate" name="date" placeholder="Date *">
-                                        <script>
-                                            var today = new Date();
-                                            var dd = today.getDate();
-                                            var mm = today.getMonth()+1; //January is 0!
-                                            var yyyy = today.getFullYear();
-                                            if(dd<10){
-                                                dd='0'+dd;
-                                            }
-                                            if(mm<10){
-                                                mm='0'+mm;
-                                            }
-                                            var today =dd+'/'+mm+'/'+yyyy;
-                                            alert(today);
-                                            document.getElementById("pdate").value = today;
-                                        </script>
-                                        <input type="text" name="billNo" id="pbill" placeholder="Bill No *">
-                                        <label for="pproduct">Products:</label>
-                                        <select id="pproduct" onchange="update();updateQuantity()" name="product">
-                                        </select>
-                                        <c:forEach  items="${productList}" var="listValue">
-                                            <script>
-                                                //alert('${listValue.getName()}');
-                                                var select=document.getElementById('pproduct');
-                                                var opt = document.createElement('option');
-                                                opt.value = '${listValue.getName()}';
-                                                opt.innerHTML = '${listValue.getName()}';
-                                                select.appendChild(opt);
-                                            </script>
-                                        </c:forEach>
-                                        <label for="psupplier">Suppliers:</label>
-                                        <select id="psupplier" name="supplier">
-                                            <option value="HP">HP</option>
-
-                                            <option value="DELL">DELL</option>
-
-                                            <option value="NOKIA">NOKIA</option>
-                                        </select>
-                                        <input type="number" name="tax" id="ptax" onchange="updateQuantity()" placeholder="Tax *">
-                                        <input type="number" name="quantity" id="pquantity" onchange="updateQuantity()" placeholder="Quantity *">
-                                        <input type="number" name="rate" id="prate" onchange="updateQuantity()" placeholder="Rate *">
-                                        <input type="number" name="totalAmount" id="ptotal" onchange="updateQuantity()" placeholder="Total Amount">
-                                        <input type="number" name="net" id="pnet" placeholder="Net">
-                                        <label for="ppayMode">Country:</label>
-                                        <select id="ppayMode" name="payMode">
-                                            <option value="HandCash">Hand Cash</option>
-
-                                            <option value="Bank">Bank</option>
-                                        </select>
-                                    </fieldset>
-                                    <input type="submit" value="Apply" />
-
-                                </form>
-                            </div>
-
-                        </div>
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <!-- Adding menu for the employee table -->
+                                <th>#</th>
+                                <th>Total Income</th>
+                                <th>Total Expense</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <!-- adding all employees  -->
+                            <tr>
+                                <td>
+                                    <c:out value="#" />
+                                </td>
+                                <td>
+                                    <c:out value="${income} Tk"/>
+                                </td>
+                                <td>
+                                    <c:out value="${expense} Tk" />
+                                <td/>
+                            </tr>
+                            </tbody>
+                            <label></label>
+                        </table>
                         <script>
-                            var price;
-                            var tax;
-                            function update()
+                            var income='${income}';
+                            var expense='${expense}';
+                            if(income>expense)
                             {
-                                //alert(selectedValue);
-                                <c:forEach  items="${productList}" var="listValue">
-                                compare('${listValue.getName()}','${listValue.getPrice()}','${listValue.getTax()}');
-                                </c:forEach>
+
+                                var profit=income-expense;
+                                //alert(profit);
+                                document.getElementById("incexp").value = "Profit : "+profit+" Tk";
                             }
-                            function compare()
+                            else
                             {
-                                var selectBox = document.getElementById("pproduct");
-                                var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-                                // alert("before compare");
-                                if(selectedValue==arguments[0])
-                                {
-                                    //alert("ok");
-                                    document.getElementById("prate").value=parseInt(arguments[1]);
-                                    document.getElementById("ptax").value=parseFloat(arguments[2]);
-                                    price=arguments[1];
-                                    tax=arguments[2];
-                                }
+
+                                var loss=expense-income;
+                                //alert(loss);
+                                document.getElementById("incexp").value = "Loss : "+loss+" Tk";
                             }
-                            function updateQuantity()
-                            {
-                                var quantity=document.getElementById("pquantity").value;
-                                var price=document.getElementById("prate").value;
-                                var tax=document.getElementById("ptax").value;
-                                var totalPrice=quantity*price;
-                                var taxx=totalPrice+(totalPrice*(tax/100));
-                                document.getElementById("ptotal").value=totalPrice;
-                                document.getElementById("pnet").value=taxx;
-                            }
+
                         </script>
-
-                        <!--Body Ends Here-->
-                        <c:forEach  items="${purchaselist}" var="listValue">
-                            <script>
-                                // alert("mara khai");
-                                document.getElementById("pid").value=parseInt('${listValue.getId()}');
-                                document.getElementById("pdate").value='${listValue.getDate()}';
-                                document.getElementById("pbill").value=parseInt('${listValue.getBillNo()}');
-                                document.getElementById("pproduct").value='${listValue.getProduct()}';
-                                document.getElementById("psupplier").value='${listValue.getSupplier()}';
-                                document.getElementById("ptax").value=parseFloat('${listValue.getTax()}');
-                                document.getElementById("pquantity").value=parseInt('${listValue.getQuantity()}');
-                                document.getElementById("prate").value=parseInt('${listValue.getRate()}');
-                                document.getElementById("ptotal").value=parseInt('${listValue.getTotalAmount()}');
-                                document.getElementById("pnet").value=parseInt('${listValue.getNet()}');
-                                document.getElementById("ppayMode").value='${listValue.getPayMode()}';
-                            </script>
-                        </c:forEach>
-
                     </div>
                 </div>
                 <!-- END TABLE HOVER -->
-
-
+                <h3><a href="/profitLossPDF">Download PDF Document</a></h3>
 
             </div>
         </div>
@@ -290,4 +224,5 @@
 </body>
 
 </html>
+
 

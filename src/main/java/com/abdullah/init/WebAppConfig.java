@@ -71,6 +71,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/resources/**").addResourceLocations("/Design/");
+		registry.addResourceHandler("/favicon.ico").addResourceLocations("/favicon.ico");
 	}
 
 	@Bean

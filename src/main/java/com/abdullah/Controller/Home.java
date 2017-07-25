@@ -6,6 +6,7 @@ import com.abdullah.Employee.EmployeeBean;
 import com.abdullah.EmployeeDatabase.EmployeeDetails;
 import com.abdullah.Product.ProductListBean;
 import com.abdullah.ProductDatabase.ProductDetails;
+import com.abdullah.ProfitAndLoss.ProfitLossCalculate;
 import com.abdullah.Project.ProjectBean;
 import com.abdullah.ProjectDatabase.ProjectDetails;
 import com.abdullah.Purchase.PurchaseListBean;
@@ -473,6 +474,26 @@ public class Home
         try
         {
             model = new ModelAndView("UpdateSales","update-Sales-entity",new SalesListBean());
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return model;
+    }
+    @Autowired
+    ProfitLossCalculate plc;
+    @RequestMapping(value="/ProfitLoss")
+    public ModelAndView processProfitLoss()
+    {
+        plc.CalculateIncome();
+        plc.CalculateExpense();
+        ModelAndView model= null;
+        try
+        {
+            model = new ModelAndView("ProfitLoss");
+            model.addObject("income",plc.getIncome());
+            model.addObject("expense",plc.getExpense());
         }
         catch(Exception e)
         {

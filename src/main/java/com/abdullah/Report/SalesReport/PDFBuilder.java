@@ -23,6 +23,7 @@ public class PDFBuilder extends AbstractITextPdfView {
         List<DataClass> listBooks = (List<DataClass>) model.get("listBooks");
         String clientName=(String) model.get("clientName");
         String date=(String) model.get("date");
+        Double TotalBill=(Double)model.get("TotalBill");
         doc.add(new Paragraph("Rhivaan Group Of Industries"));
 
         doc.add(new Paragraph("Date : "+date));
@@ -72,6 +73,8 @@ public class PDFBuilder extends AbstractITextPdfView {
             table.addCell(aBook.getNetTotal()+"");
 
         }
+
         doc.add(table);
+        doc.add(new Paragraph("Total Bill : "+TotalBill));
     }
 }
