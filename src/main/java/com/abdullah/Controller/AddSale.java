@@ -2,7 +2,8 @@ package com.abdullah.Controller;
 
 import com.abdullah.CustomerListDataBase.CustomerDetails;
 import com.abdullah.Customers.CustomersListBean;
-import com.abdullah.Product.ProductListBean;
+import com.abdullah.Inventory.InventoryListBean;
+import com.abdullah.InventoryDataBase.InventoryDetails;
 import com.abdullah.ProductDatabase.ProductDetails;
 import com.abdullah.Sales.SalesListBean;
 import com.abdullah.SalesDatabase.SalesDetails;
@@ -27,6 +28,8 @@ public class AddSale {
     ProductDetails prdet;
     @Autowired
     CustomerDetails customer;
+    @Autowired
+    InventoryDetails inv;
     @RequestMapping(value="/add-sales")
     public ModelAndView processSalesRegister(@ModelAttribute SalesListBean salesListBean)
     {
@@ -38,6 +41,7 @@ public class AddSale {
             {
                 System.out.println(salesListBean.getNet());
                 cd.registerSales(salesListBean.getBillNo(), salesListBean.getDate(), salesListBean.getProduct(), salesListBean.getPrice(), salesListBean.getCustomer(), salesListBean.getQuantity(), salesListBean.getTotal(), salesListBean.getTax(), salesListBean.getNet(), salesListBean.getPayMode());
+                updateInventory(salesListBean.getProduct(),salesListBean.getQuantity());
                 model = new ModelAndView("Home");
             }
             else
@@ -51,7 +55,19 @@ public class AddSale {
         }
         return model;
     }
-
+    public void updateInventory(String productName,int Quantity)
+    {
+        List<InventoryListBean> list=inv.getListInventory();
+        for(int i=0;i<list.size();i++)
+        {
+            InventoryListBean iv=list.get(i);
+            if(iv.getName().equals(productName))
+            {
+                iv.setQuantity((iv.getQuantity()-Quantity));
+                 inv.updateInventory(iv);
+            }
+        }
+    }
     @RequestMapping(value="/update-sales")
     public ModelAndView processSalesProducts(@RequestParam int userId)
     {
@@ -67,7 +83,7 @@ public class AddSale {
             //checking if reading the databse
            //System.out.println(l.get(0).getProduct());
             model.addObject("saleslist",l);
-            List<ProductListBean> proList = prdet.getListProducts();
+            List<InventoryListBean> proList = inv.getListInventory();
             model.addObject("productList",proList);
             List<CustomersListBean> cust=customer.getListofCustomers();
             model.addObject("customerList",cust);

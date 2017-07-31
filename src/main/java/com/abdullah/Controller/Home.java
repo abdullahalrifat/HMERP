@@ -4,6 +4,8 @@ import com.abdullah.CustomerListDataBase.CustomerDetails;
 import com.abdullah.Customers.CustomersListBean;
 import com.abdullah.Employee.EmployeeBean;
 import com.abdullah.EmployeeDatabase.EmployeeDetails;
+import com.abdullah.Inventory.InventoryListBean;
+import com.abdullah.InventoryDataBase.InventoryDetails;
 import com.abdullah.Product.ProductListBean;
 import com.abdullah.ProductDatabase.ProductDetails;
 import com.abdullah.ProfitAndLoss.ProfitLossCalculate;
@@ -451,7 +453,7 @@ public class Home
         try
         {
             model = new ModelAndView("AddSales","register-Sales-entity",new SalesListBean());
-            List<ProductListBean> proList = prdet.getListProducts();
+            List<InventoryListBean> proList = inv.getListInventory();
             List<CustomersListBean> customerList = cumdet.getListofCustomers();
 
 
@@ -501,6 +503,60 @@ public class Home
         }
         return model;
     }
+    @Autowired
+    InventoryDetails inv;
+    @RequestMapping(value="/InventoryList")
+    public ModelAndView processInventory()
+    {
+        ModelAndView model= null;
+        try
+        {
+            model = new ModelAndView("InventoryList");
+
+            List<InventoryListBean> productList = inv.getListInventory();
+
+
+            //checking if reading the databse
+            //System.out.println(projectList.get(0).getProjectName());
+
+            model.addObject("productList",productList);
+
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return model;
+    }
+    @RequestMapping(value="/AddInventory")
+    public ModelAndView processAddInventory()
+    {
+        ModelAndView model= null;
+        try
+        {
+            model = new ModelAndView("AddInventory","register-Inventory-entity",new InventoryListBean());
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return model;
+    }
+    @RequestMapping(value="/UpdateInventory")
+    public ModelAndView processUpdateInventory()
+    {
+        ModelAndView model= null;
+        try
+        {
+            model = new ModelAndView("UpdateInventory","update-Inventory-entity",new InventoryListBean());
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return model;
+    }
+
 /*
     @RequestMapping(value="/projects")
     public ModelAndView processProjects()

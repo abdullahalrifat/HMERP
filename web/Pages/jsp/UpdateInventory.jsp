@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: abdullah
+  Date: 7/30/17
+  Time: 1:20 AM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
@@ -28,9 +35,13 @@
     <!-- ICONS -->
     <link rel="apple-touch-icon" sizes="76x76" href="/resources/AdminPanel/template/assets/img/apple-icon.png">
     <link rel="icon" type="image/png" sizes="96x96" href="/resources/AdminPanel/template/assets/img/favicon.png">
+    <!--JS
+    <script type="text/javascript" src="/resources/OtherHardCodedJS/updateCustomer.js"></script>
+        -->
+
 </head>
 
-<body>
+<body >
 <!-- WRAPPER -->
 <div id="wrapper">
     <!-- SIDEBAR -->
@@ -43,9 +54,9 @@
                 <ul class="nav">
                     <li><a href="index.html" class=""><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
                     <li><a href="CustomersList.html" class=""><i class="lnr lnr-employee"></i> <span>Customers</span></a></li>
-                    <li><a href="ProductList.html" class=""><i class="lnr lnr-employee"></i> <span>Products</span></a></li>
+                    <li><a href="ProductList.html" class="active"><i class="lnr lnr-employee"></i> <span>Products</span></a></li>
                     <li><a href="PurchaseList.html" class=""><i class="lnr lnr-employee"></i> <span>Purchase</span></a></li>
-                    <li><a href="SalesList.html" class="active"><i class="lnr lnr-employee"></i> <span>Sales</span></a></li>
+                    <li><a href="SalesList.html" class=""><i class="lnr lnr-employee"></i> <span>Sales</span></a></li>
                     <li><a href="ProfitLoss.html" class=""><i class="lnr lnr-employee"></i> <span>Profit&Loss</span></a></li>
 
                     <li><a href="employees.html" class=""><i class="lnr lnr-employee"></i> <span>Employees</span></a></li>
@@ -136,129 +147,49 @@
         <div class="main-content">
             <div class="container-fluid">
                 <h3 class="page-title">Tables</h3>
-                <a class="btn" href="AddSales.html"><img src="/resources/AdminPanel/template/assets/img/add.png" class="img-circle" alt="Avatar"></a>
+                <a class="btn" href="AddInventory.html"><img src="/resources/AdminPanel/template/assets/img/add.png" class="img-circle" alt="Avatar"></a>
                 <!-- TABLE HOVER -->
-                <div class="panel">
+                <div class="panel" id="UpdateModal">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Add Sales</h3>
+                        <h3 class="panel-title">Update Inventory</h3>
                     </div>
-                    <div class="panel-body">
+                    <div class="panel-body" >
                         <!--body goes here-->
                         <div class="form">
                             <div class="form-style-5">
-                                <form method="POST" commandName="register-Sales-entity" action="/add-sales.html">
+                                <form  id ="CustomerForm" method="POST" commandName="update-Inventory-entity" action="/update-inventory-row.html">
+
                                     <fieldset>
-
-                                        <input type="datetime" id="date" name="date" placeholder="Date *">
-                                        <script>
-                                            var today = new Date();
-                                            var dd = today.getDate();
-                                            var mm = today.getMonth()+1; //January is 0!
-                                            var yyyy = today.getFullYear();
-                                            if(dd<10){
-                                                dd='0'+dd;
-                                            }
-                                            if(mm<10){
-                                                mm='0'+mm;
-                                            }
-                                            var today =dd+'/'+mm+'/'+yyyy;
-                                            alert(today);
-                                            document.getElementById("date").value = today;
-                                        </script>
-                                        <input type="text" name="billNo" placeholder="Bill No *">
-                                        <label for="product">Products:</label>
-                                        <select id="product" onchange="update();updateQuantity()" name="product">
-                                        </select>
-                                        <c:forEach  items="${productList}" var="listValue">
-                                            <script>
-                                                //alert('${listValue.getName()}');
-                                                var select=document.getElementById('product');
-                                                var opt = document.createElement('option');
-                                                opt.value = '${listValue.getName()}';
-                                                opt.innerHTML = '${listValue.getName()}';
-                                                select.appendChild(opt);
-                                            </script>
-                                        </c:forEach>
-                                        <input type="text" id="price" name="price" placeholder="Price *">
-                                        <input type="text" id="tax" name="tax" placeholder="Tax *">
-                                        <label for="customer">Customers :</label>
-                                        <select id="customer" name="customer">
-                                        </select>
-                                        <c:forEach  items="${customerList}" var="listValue">
-                                            <script>
-                                                //alert('${listValue.getName()}');
-                                                var select=document.getElementById('customer');
-                                                var opt = document.createElement('option');
-                                                opt.value = '${listValue.getName()}';
-                                                opt.innerHTML = '${listValue.getName()}';
-                                                select.appendChild(opt);
-                                            </script>
-                                        </c:forEach>
-
-                                        <input type="number" id="quantity" onchange="updateQuantity()" name="quantity" placeholder="Quantity *">
-
-                                        <input type="number" id="total" name="total" placeholder="Amount To Collect *">
-                                        <input type="number" name="net" id="net" placeholder="AmountReceived *">
-                                        <select id="payMode" name="payMode">
-                                            <option value="HandCash">Hand Cash</option>
-                                            <option value="Bank">Bank</option>
-                                        </select>
+                                        <input type="hidden" name="Id" id="pid" type="number" placeholder="ID">
+                                        <input type="text" name="Name" id="pname" placeholder="Product *">
+                                        <input type="text" name="CostPrice" id="cprice" placeholder="Cost Price *">
+                                        <input type="text" name="CostTax" id="ctax" placeholder="Cost Tax *">
+                                        <input type="text" name="SalesPrice" id="sprice" placeholder="Sales Price *">
+                                        <input type="text" name="SalesTax" id="stax" placeholder="Sales Tax *">
+                                        <input type="text" name="Quantity" id="quantity" placeholder="Quantity *">
                                     </fieldset>
-
                                     <input type="submit" value="Apply" />
+
                                 </form>
                             </div>
 
                         </div>
 
-                        <script>
-                            var price;
-                            var tax;
-                            function update()
-                                {
-                                        //alert(selectedValue);
-                                        <c:forEach  items="${productList}" var="listValue">
-                                            compare('${listValue.getName()}','${listValue.getSalesPrice()}','${listValue.getSalesTax()}');
-                                         </c:forEach>
-                                }
-                                function compare()
-                                {
-                                    var selectBox = document.getElementById("product");
-                                    var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-                                   // alert("before compare");
-                                    if(selectedValue==arguments[0])
-                                    {
-                                        //alert("ok");
-                                        document.getElementById("price").value=parseInt(arguments[1]);
-                                        document.getElementById("tax").value=parseFloat(arguments[2]);
-                                        price=arguments[1];
-                                        tax=arguments[2];
-                                    }
-                                }
-                                function updateQuantity()
-                                {
-                                    var quantity=document.getElementById("quantity").value;
-                                    <c:forEach  items="${productList}" var="listValue">
-                                        var proQuantity = "<c:out value='${listValue.getQuantity()}'/>";
-                                    </c:forEach>
 
-                                    if(quantity>proQuantity)
-                                    {
-                                        alert("You Do Not Have "+quantity+" Products");
-                                        document.getElementById("quantity").value=0;
-                                    }
-                                    else
-                                    {
-                                        var total=quantity*price;
-                                        var taxx=tax/100;
-                                        var totalPrice=total+(total*taxx);
-                                        document.getElementById("total").value=total;
-                                        document.getElementById("net").value=totalPrice;
-                                    }
-
-                                }
-                        </script>
                         <!--Body Ends Here-->
+                        <c:forEach  items="${productlist}" var="listValue">
+                            <script>
+                                // alert("mara khai");
+                                document.getElementById("pid").value=parseInt('${listValue.getId()}');
+                                document.getElementById("pname").value='${listValue.getName()}';
+                                document.getElementById("cprice").value=parseInt('${listValue.getCostPrice()}');
+                                document.getElementById("ctax").value=parseFloat('${listValue.getCostTax()}');
+                                document.getElementById("sprice").value=parseFloat('${listValue.getSalesPrice()}');
+                                document.getElementById("stax").value=parseFloat('${listValue.getSalesTax()}');
+                                document.getElementById("quantity").value=parseFloat('${listValue.getQuantity()}');
+                            </script>
+                        </c:forEach>
+
                     </div>
                 </div>
                 <!-- END TABLE HOVER -->
@@ -281,6 +212,8 @@
 <script src="/resources/AdminPanel/template/assets/js/bootstrap/bootstrap.min.js"></script>
 <script src="/resources/AdminPanel/template/assets/js/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <script src="/resources/AdminPanel/template/assets/js/klorofil.min.js"></script>
+
 </body>
 
 </html>
+

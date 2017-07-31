@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: abdullah
+  Date: 7/30/17
+  Time: 12:35 AM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
@@ -17,7 +24,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <!-- CSS -->
-    <link rel="stylesheet" href="/resources/OtherHardCodedDesigns/InputFormDesign.css">
     <link rel="stylesheet" href="/resources/AdminPanel/template/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="/resources/AdminPanel/template/assets/css/vendor/icon-sets.css">
     <link rel="stylesheet" href="/resources/AdminPanel/template/assets/css/main.min.css">
@@ -28,6 +34,10 @@
     <!-- ICONS -->
     <link rel="apple-touch-icon" sizes="76x76" href="/resources/AdminPanel/template/assets/img/apple-icon.png">
     <link rel="icon" type="image/png" sizes="96x96" href="/resources/AdminPanel/template/assets/img/favicon.png">
+    <!--JS
+    <script src="/resources/OtherHardCodedJS/updateCustomer.js"></script>
+-->
+
 </head>
 
 <body>
@@ -42,10 +52,12 @@
             <nav>
                 <ul class="nav">
                     <li><a href="index.html" class=""><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
+                    <li><a href="InventoryList.html" class="active"><i class="lnr lnr-employee"></i> <span>Inventory</span></a></li>
+
                     <li><a href="CustomersList.html" class=""><i class="lnr lnr-employee"></i> <span>Customers</span></a></li>
                     <li><a href="ProductList.html" class=""><i class="lnr lnr-employee"></i> <span>Products</span></a></li>
                     <li><a href="PurchaseList.html" class=""><i class="lnr lnr-employee"></i> <span>Purchase</span></a></li>
-                    <li><a href="SalesList.html" class="active"><i class="lnr lnr-employee"></i> <span>Sales</span></a></li>
+                    <li><a href="SalesList.html" class=""><i class="lnr lnr-employee"></i> <span>Sales</span></a></li>
                     <li><a href="ProfitLoss.html" class=""><i class="lnr lnr-employee"></i> <span>Profit&Loss</span></a></li>
 
                     <li><a href="employees.html" class=""><i class="lnr lnr-employee"></i> <span>Employees</span></a></li>
@@ -136,129 +148,69 @@
         <div class="main-content">
             <div class="container-fluid">
                 <h3 class="page-title">Tables</h3>
-                <a class="btn" href="AddSales.html"><img src="/resources/AdminPanel/template/assets/img/add.png" class="img-circle" alt="Avatar"></a>
+                <a class="btn" href="AddInventory.html"><img src="/resources/AdminPanel/template/assets/img/add.png" class="img-circle" alt="Avatar"></a>
                 <!-- TABLE HOVER -->
                 <div class="panel">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Add Sales</h3>
+                        <h3 class="panel-title">Inventory</h3>
                     </div>
                     <div class="panel-body">
-                        <!--body goes here-->
-                        <div class="form">
-                            <div class="form-style-5">
-                                <form method="POST" commandName="register-Sales-entity" action="/add-sales.html">
-                                    <fieldset>
 
-                                        <input type="datetime" id="date" name="date" placeholder="Date *">
-                                        <script>
-                                            var today = new Date();
-                                            var dd = today.getDate();
-                                            var mm = today.getMonth()+1; //January is 0!
-                                            var yyyy = today.getFullYear();
-                                            if(dd<10){
-                                                dd='0'+dd;
-                                            }
-                                            if(mm<10){
-                                                mm='0'+mm;
-                                            }
-                                            var today =dd+'/'+mm+'/'+yyyy;
-                                            alert(today);
-                                            document.getElementById("date").value = today;
-                                        </script>
-                                        <input type="text" name="billNo" placeholder="Bill No *">
-                                        <label for="product">Products:</label>
-                                        <select id="product" onchange="update();updateQuantity()" name="product">
-                                        </select>
-                                        <c:forEach  items="${productList}" var="listValue">
-                                            <script>
-                                                //alert('${listValue.getName()}');
-                                                var select=document.getElementById('product');
-                                                var opt = document.createElement('option');
-                                                opt.value = '${listValue.getName()}';
-                                                opt.innerHTML = '${listValue.getName()}';
-                                                select.appendChild(opt);
-                                            </script>
-                                        </c:forEach>
-                                        <input type="text" id="price" name="price" placeholder="Price *">
-                                        <input type="text" id="tax" name="tax" placeholder="Tax *">
-                                        <label for="customer">Customers :</label>
-                                        <select id="customer" name="customer">
-                                        </select>
-                                        <c:forEach  items="${customerList}" var="listValue">
-                                            <script>
-                                                //alert('${listValue.getName()}');
-                                                var select=document.getElementById('customer');
-                                                var opt = document.createElement('option');
-                                                opt.value = '${listValue.getName()}';
-                                                opt.innerHTML = '${listValue.getName()}';
-                                                select.appendChild(opt);
-                                            </script>
-                                        </c:forEach>
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <!-- Adding menu for the employee table -->
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>CostPrice</th>
+                                <th>CostTax</th>
+                                <th>SalesPrice</th>
+                                <th>SalesTax</th>
+                                <th>Quantity</th>
 
-                                        <input type="number" id="quantity" onchange="updateQuantity()" name="quantity" placeholder="Quantity *">
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <!-- adding all employees  -->
+                            <c:forEach var = "listValue" items = "${productList}">
 
-                                        <input type="number" id="total" name="total" placeholder="Amount To Collect *">
-                                        <input type="number" name="net" id="net" placeholder="AmountReceived *">
-                                        <select id="payMode" name="payMode">
-                                            <option value="HandCash">Hand Cash</option>
-                                            <option value="Bank">Bank</option>
-                                        </select>
-                                    </fieldset>
+                                <tr>
+                                    <td>
+                                        <c:out value="${listValue.getId()}"/>
+                                    </td>
+                                    <td>
+                                        <c:out value="${listValue.getName()}"/>
+                                    </td>
+                                    <td>
+                                        <c:out value="${listValue.getCostPrice()}"/>
+                                    </td>
+                                    <td>
+                                        <c:out value="${listValue.getCostTax()}"/>
+                                    </td>
+                                    <td>
+                                        <c:out value="${listValue.getSalesPrice()}"/>
+                                    </td>
+                                    <td>
+                                        <c:out value="${listValue.getSalesTax()}"/>
+                                    </td>
+                                    <td>
+                                        <c:out value="${listValue.getQuantity()}"/>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-warning btn-xs" href="<c:out value='/update-inventory.html?userId=${listValue.getId()}' />">Edit</a>
 
-                                    <input type="submit" value="Apply" />
-                                </form>
-                            </div>
+                                        <a class="btn btn-xs btn-danger" href="<c:out value='/delete-inventory-row.html?userId=${listValue.getId()}' />" onclick="return confirm('Are you sure to delete this?')"> Delete</a>
+                                        <!--<a class="btn btn-success btn-xs"  href="http://demo.swot.co.in/accounting/public/customers/transactions/1"><span class="fa fa-files-o" aria-hidden="true"></span> View Transactions</a> -->
+                                    </td>
+                                </tr>
 
-                        </div>
+                            </c:forEach>
 
-                        <script>
-                            var price;
-                            var tax;
-                            function update()
-                                {
-                                        //alert(selectedValue);
-                                        <c:forEach  items="${productList}" var="listValue">
-                                            compare('${listValue.getName()}','${listValue.getSalesPrice()}','${listValue.getSalesTax()}');
-                                         </c:forEach>
-                                }
-                                function compare()
-                                {
-                                    var selectBox = document.getElementById("product");
-                                    var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-                                   // alert("before compare");
-                                    if(selectedValue==arguments[0])
-                                    {
-                                        //alert("ok");
-                                        document.getElementById("price").value=parseInt(arguments[1]);
-                                        document.getElementById("tax").value=parseFloat(arguments[2]);
-                                        price=arguments[1];
-                                        tax=arguments[2];
-                                    }
-                                }
-                                function updateQuantity()
-                                {
-                                    var quantity=document.getElementById("quantity").value;
-                                    <c:forEach  items="${productList}" var="listValue">
-                                        var proQuantity = "<c:out value='${listValue.getQuantity()}'/>";
-                                    </c:forEach>
 
-                                    if(quantity>proQuantity)
-                                    {
-                                        alert("You Do Not Have "+quantity+" Products");
-                                        document.getElementById("quantity").value=0;
-                                    }
-                                    else
-                                    {
-                                        var total=quantity*price;
-                                        var taxx=tax/100;
-                                        var totalPrice=total+(total*taxx);
-                                        document.getElementById("total").value=total;
-                                        document.getElementById("net").value=totalPrice;
-                                    }
 
-                                }
-                        </script>
-                        <!--Body Ends Here-->
+                            </tbody>
+                        </table>
+
                     </div>
                 </div>
                 <!-- END TABLE HOVER -->
@@ -270,7 +222,7 @@
         <!-- END MAIN CONTENT -->
         <footer>
             <div class="container-fluid">
-                <p class="copyright">&copy; 2017. Developed by <a href="http://wngit.com/">W & G Information Technology</a></p>            </div>
+                <p class="copyright">&copy; 2017. Developed by <a href="http://wngit.com/">W & G Information Technology</a></p>                </div>
         </footer>
     </div>
     <!-- END MAIN -->
@@ -281,6 +233,9 @@
 <script src="/resources/AdminPanel/template/assets/js/bootstrap/bootstrap.min.js"></script>
 <script src="/resources/AdminPanel/template/assets/js/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <script src="/resources/AdminPanel/template/assets/js/klorofil.min.js"></script>
+
 </body>
 
 </html>
+
+

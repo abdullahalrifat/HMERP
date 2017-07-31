@@ -221,7 +221,7 @@
                             {
                                 //alert(selectedValue);
                                 <c:forEach  items="${productList}" var="listValue">
-                                compare('${listValue.getName()}','${listValue.getPrice()}','${listValue.getTax()}');
+                                compare('${listValue.getName()}','${listValue.getSalesPrice()}','${listValue.getSalesTax()}');
                                 </c:forEach>
                             }
                             function compare()

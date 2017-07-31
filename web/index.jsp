@@ -39,6 +39,12 @@
       <p class="message">Not registered? <a href="#">Create an account</a></p>
     </form>
   </div>
+  <!-- END MAIN CONTENT -->
+  <footer>
+    <div class="container-fluid">
+      <p class="copyright">&copy; 2017. Developed by <a href="http://wngit.com/">W & G Information Technology</a></p>
+    </div>
+  </footer>
 </div>
 
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>

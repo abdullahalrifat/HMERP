@@ -4,6 +4,8 @@ import com.abdullah.CustomerListDataBase.CustomerDAO;
 import com.abdullah.CustomerListDataBase.jdbcCustomerDAO;
 import com.abdullah.EmployeeDatabase.EmployeeDAO;
 import com.abdullah.EmployeeDatabase.JdbcEmployeeDAO;
+import com.abdullah.InventoryDataBase.InventoryDAO;
+import com.abdullah.InventoryDataBase.JdbcInventoryDAO;
 import com.abdullah.LoginDataBase.JdbcUserDAO;
 import com.abdullah.LoginDataBase.UserDAO;
 import com.abdullah.ProductDatabase.ProductsDAO;
@@ -101,6 +103,10 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 	@Bean
 	public SalesDAO getSalesDAO() {
 		return new jdbcSalesDAO(dataSource());
+	}
+	@Bean
+	public InventoryDAO getInventoryDAO() {
+		return new JdbcInventoryDAO(dataSource());
 	}
 
 
