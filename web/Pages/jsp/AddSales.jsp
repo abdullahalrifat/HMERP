@@ -42,6 +42,8 @@
             <nav>
                 <ul class="nav">
                     <li><a href="index.html" class=""><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
+                    <li><a href="InventoryList.html" class=""><i class="lnr lnr-employee"></i> <span>Inventory</span></a></li>
+
                     <li><a href="CustomersList.html" class=""><i class="lnr lnr-employee"></i> <span>Customers</span></a></li>
                     <li><a href="ProductList.html" class=""><i class="lnr lnr-employee"></i> <span>Products</span></a></li>
                     <li><a href="PurchaseList.html" class=""><i class="lnr lnr-employee"></i> <span>Purchase</span></a></li>
@@ -167,7 +169,7 @@
                                         </script>
                                         <input type="text" name="billNo" placeholder="Bill No *">
                                         <label for="product">Products:</label>
-                                        <select id="product" onchange="update();updateQuantity()" name="product">
+                                        <select id="product" onchange="update()" name="product">
                                         </select>
                                         <c:forEach  items="${productList}" var="listValue">
                                             <script>
@@ -237,18 +239,26 @@
                                 }
                                 function updateQuantity()
                                 {
-                                    var quantity=document.getElementById("quantity").value;
+                                    var quantity=parseInt(document.getElementById("quantity").value);
+                                    var selectBox = document.getElementById("product");
+                                    var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+                                    var proQuantity=0;
                                     <c:forEach  items="${productList}" var="listValue">
-                                        var proQuantity = "<c:out value='${listValue.getQuantity()}'/>";
+                                        if(selectedValue=="<c:out value='${listValue.getName()}'/>")
+                                        {
+                                            proQuantity = parseInt("<c:out value='${listValue.getQuantity()}'/>");
+                                        }
                                     </c:forEach>
-
+                                    //alert(quantity>proQuantity);
                                     if(quantity>proQuantity)
                                     {
+                                       // alert("if not "+quantity+" "+proQuantity);
                                         alert("You Do Not Have "+quantity+" Products");
                                         document.getElementById("quantity").value=0;
                                     }
                                     else
                                     {
+                                        //alert(quantity+" "+proQuantity);
                                         var total=quantity*price;
                                         var taxx=tax/100;
                                         var totalPrice=total+(total*taxx);
@@ -262,9 +272,6 @@
                     </div>
                 </div>
                 <!-- END TABLE HOVER -->
-
-
-
             </div>
         </div>
         <!-- END MAIN CONTENT -->
