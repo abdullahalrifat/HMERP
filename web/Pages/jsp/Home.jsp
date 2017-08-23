@@ -40,6 +40,8 @@
                 <ul class="nav">
                     <li><a href="index.html" class="active"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
                     <li><a href="InventoryList.html" class=""><i class="lnr lnr-employee"></i> <span>Inventory</span></a></li>
+                    <li><a href="JournalEntry.html" class=""><i class="lnr lnr-employee"></i> <span>Journal</span></a></li>
+                    <li><a href="HeadEntry.html" class=""><i class="lnr lnr-employee"></i> <span>Head Entry</span></a></li>
 
                     <li><a href="CustomersList.html" class=""><i class="lnr lnr-employee"></i> <span>Customers</span></a></li>
                     <li><a href="ProductList.html" class=""><i class="lnr lnr-employee"></i> <span>Products</span></a></li>

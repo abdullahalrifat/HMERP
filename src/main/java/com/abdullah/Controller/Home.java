@@ -556,6 +556,34 @@ public class Home
         }
         return model;
     }
+    @RequestMapping(value="/JournalEntry")
+    public ModelAndView processJournalEntry()
+    {
+        ModelAndView model= null;
+        try
+        {
+            model = new ModelAndView("JournalEntry");
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return model;
+    }
+    @RequestMapping(value="/HeadEntry")
+    public ModelAndView processHeadEntry()
+    {
+        ModelAndView model= null;
+        try
+        {
+            model = new ModelAndView("HeadEntry");
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return model;
+    }
 
 /*
     @RequestMapping(value="/projects")
